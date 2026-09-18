@@ -13,12 +13,16 @@ get_header();
 
   <!-- ============ HERO — Scene 01: The Yard at First Light ============ -->
   <section class="hero">
-    <div class="media-panel" aria-hidden="true">
-      <span class="media-panel__glyph">01</span>
-      <span class="media-panel__index">FIG. 01</span>
-      <div class="media-panel__frame"></div>
-      <span class="media-panel__tag">Scene 01 — The Yard at First Light</span>
-    </div>
+    <?php
+    echo denson_cel_media_panel(
+      array(
+        'image_id' => denson_cel_site_image_id( 'denson_cel_img_hero' ),
+        'glyph'    => '01',
+        'index'    => 'FIG. 01',
+        'tag'      => 'Scene 01 — The Yard at First Light',
+      )
+    );
+    ?>
     <div class="hero__scrim"></div>
     <div class="hero__content container">
       <p class="eyebrow">Commercial Equipment Leasing</p>
@@ -87,12 +91,17 @@ get_header();
           <p class="lede">Rent the right equipment for the job, for as long as you need it. With flexible daily, weekly, and monthly options, Denson helps you keep equipment working, projects moving, and capital in your business.</p>
         </div>
         <div class="mission__media" data-reveal>
-          <div class="media-panel media-panel--4x5" aria-hidden="true">
-            <span class="media-panel__glyph">02</span>
-            <span class="media-panel__index">FIG. 02</span>
-            <div class="media-panel__frame"></div>
-            <span class="media-panel__tag">Scene 02 — Machine in Motion</span>
-          </div>
+          <?php
+          echo denson_cel_media_panel(
+            array(
+              'aspect'   => '4x5',
+              'image_id' => denson_cel_site_image_id( 'denson_cel_img_mission' ),
+              'glyph'    => '02',
+              'index'    => 'FIG. 02',
+              'tag'      => 'Scene 02 — Machine in Motion',
+            )
+          );
+          ?>
         </div>
       </div>
 
@@ -127,12 +136,17 @@ get_header();
           <p class="body-text mt-3">We built Denson around a simple idea: the equipment rental business isn't really about equipment. It's about trust. Trust that the machine will run. Trust that if something comes up, someone answers the phone. Trust that you can plan a job around us and we'll hold up our end of it.</p>
         </div>
         <div class="story__media" data-reveal>
-          <div class="media-panel media-panel--4x5" aria-hidden="true">
-            <span class="media-panel__glyph">&mdash;</span>
-            <span class="media-panel__index">FIG. 03</span>
-            <div class="media-panel__frame"></div>
-            <span class="media-panel__tag">Inspected. Maintained. Ready.</span>
-          </div>
+          <?php
+          echo denson_cel_media_panel(
+            array(
+              'aspect'   => '4x5',
+              'image_id' => denson_cel_site_image_id( 'denson_cel_img_story' ),
+              'glyph'    => '—',
+              'index'    => 'FIG. 03',
+              'tag'      => 'Inspected. Maintained. Ready.',
+            )
+          );
+          ?>
         </div>
       </div>
     </div>
@@ -171,30 +185,48 @@ get_header();
       </div>
       <div class="industries-grid" data-reveal>
         <div class="industry-card">
-          <div class="media-panel media-panel--4x5" aria-hidden="true">
-            <span class="media-panel__glyph">01</span>
-            <div class="media-panel__frame"></div>
-          </div>
+          <?php
+          echo denson_cel_media_panel(
+            array(
+              'aspect'   => '4x5',
+              'image_id' => denson_cel_site_image_id( 'denson_cel_img_industry_1' ),
+              'glyph'    => '01',
+              'alt'      => 'Commercial Construction',
+            )
+          );
+          ?>
           <div class="industry-card__body">
             <h3 class="industry-card__title">Commercial Construction</h3>
             <p class="industry-card__desc">Lifting, staging, and material handling for active build sites.</p>
           </div>
         </div>
         <div class="industry-card">
-          <div class="media-panel media-panel--4x5" aria-hidden="true">
-            <span class="media-panel__glyph">02</span>
-            <div class="media-panel__frame"></div>
-          </div>
+          <?php
+          echo denson_cel_media_panel(
+            array(
+              'aspect'   => '4x5',
+              'image_id' => denson_cel_site_image_id( 'denson_cel_img_industry_2' ),
+              'glyph'    => '02',
+              'alt'      => 'Industrial & Facilities',
+            )
+          );
+          ?>
           <div class="industry-card__body">
             <h3 class="industry-card__title">Industrial &amp; Facilities</h3>
             <p class="industry-card__desc">Equipment that keeps plants, warehouses, and facilities operating without interruption.</p>
           </div>
         </div>
         <div class="industry-card">
-          <div class="media-panel media-panel--4x5" aria-hidden="true">
-            <span class="media-panel__glyph">03</span>
-            <div class="media-panel__frame"></div>
-          </div>
+          <?php
+          echo denson_cel_media_panel(
+            array(
+              'aspect'   => '4x5',
+              'image_id' => denson_cel_site_image_id( 'denson_cel_img_industry_3' ),
+              'glyph'    => '03',
+              'alt'      => 'Heavy Hauling & Logistics',
+            )
+          );
+          ?>
           <div class="industry-card__body">
             <h3 class="industry-card__title">Heavy Hauling &amp; Logistics</h3>
             <p class="industry-card__desc">Reliable haul capacity to move equipment and materials where the job needs them.</p>
@@ -206,12 +238,16 @@ get_header();
 
   <!-- ============ FINAL CTA — Scene 03: Hauling at Golden Hour ============ -->
   <section class="final-cta">
-    <div class="media-panel" aria-hidden="true">
-      <span class="media-panel__glyph">03</span>
-      <span class="media-panel__index">FIG. 04</span>
-      <div class="media-panel__frame"></div>
-      <span class="media-panel__tag">Scene 03 — Hauling at Golden Hour</span>
-    </div>
+    <?php
+    echo denson_cel_media_panel(
+      array(
+        'image_id' => denson_cel_site_image_id( 'denson_cel_img_final_cta' ),
+        'glyph'    => '03',
+        'index'    => 'FIG. 04',
+        'tag'      => 'Scene 03 — Hauling at Golden Hour',
+      )
+    );
+    ?>
     <div class="final-cta__scrim"></div>
     <div class="final-cta__content container" data-reveal>
       <h2 class="display-2" data-kinetic="lines" data-kinetic-lines="Ready to Get to Work?">Ready to Get to Work?</h2>

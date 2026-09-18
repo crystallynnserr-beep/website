@@ -24,12 +24,17 @@ get_header();
     <div class="container">
       <div class="unit-hero">
         <div data-reveal>
-          <div class="media-panel media-panel--4x3" aria-hidden="true">
-            <span class="media-panel__glyph">55</span>
-            <span class="media-panel__index">UNIT 03</span>
-            <div class="media-panel__frame"></div>
-            <span class="media-panel__tag">JLG 1055</span>
-          </div>
+          <?php
+          echo denson_cel_media_panel(
+            array(
+              'aspect'   => '4x3',
+              'image_id' => get_the_ID() ? get_post_thumbnail_id( get_the_ID() ) : 0,
+              'glyph'    => '55',
+              'index'    => 'UNIT 03',
+              'tag'      => 'JLG 1055',
+            )
+          );
+          ?>
         </div>
         <div data-reveal>
           <p class="body-text">The JLG 1055 pairs a 10,000-pound rated capacity with 55 feet of lift height, giving your crew the reach to place steel, trusses, and material exactly where the job calls for it — without a crane on standby.</p>
@@ -82,12 +87,16 @@ get_header();
   </section>
 
   <section class="final-cta">
-    <div class="media-panel" aria-hidden="true">
-      <span class="media-panel__glyph">03</span>
-      <span class="media-panel__index">FIG. 04</span>
-      <div class="media-panel__frame"></div>
-      <span class="media-panel__tag">Scene 03 — Hauling at Golden Hour</span>
-    </div>
+    <?php
+    echo denson_cel_media_panel(
+      array(
+        'image_id' => denson_cel_site_image_id( 'denson_cel_img_final_cta' ),
+        'glyph'    => '03',
+        'index'    => 'FIG. 04',
+        'tag'      => 'Scene 03 — Hauling at Golden Hour',
+      )
+    );
+    ?>
     <div class="final-cta__scrim"></div>
     <div class="final-cta__content container" data-reveal>
       <h2 class="display-2">Ready to Get to Work?</h2>

@@ -24,12 +24,17 @@ get_header();
     <div class="container">
       <div class="unit-hero">
         <div data-reveal>
-          <div class="media-panel media-panel--4x3" aria-hidden="true">
-            <span class="media-panel__glyph">SJ</span>
-            <span class="media-panel__index">UNIT 01</span>
-            <div class="media-panel__frame"></div>
-            <span class="media-panel__tag">JLG 660SJ</span>
-          </div>
+          <?php
+          echo denson_cel_media_panel(
+            array(
+              'aspect'   => '4x3',
+              'image_id' => get_the_ID() ? get_post_thumbnail_id( get_the_ID() ) : 0,
+              'glyph'    => 'SJ',
+              'index'    => 'UNIT 01',
+              'tag'      => 'JLG 660SJ',
+            )
+          );
+          ?>
         </div>
         <div data-reveal>
           <p class="body-text">The JLG 660SJ is a straight-stick telescopic boom lift built for the jobs where you need to go up fast and reach out far — 66 feet of platform height and 51 feet of horizontal outreach, with the smooth telescoping control that makes precise placement second nature.</p>
@@ -82,12 +87,16 @@ get_header();
   </section>
 
   <section class="final-cta">
-    <div class="media-panel" aria-hidden="true">
-      <span class="media-panel__glyph">03</span>
-      <span class="media-panel__index">FIG. 04</span>
-      <div class="media-panel__frame"></div>
-      <span class="media-panel__tag">Scene 03 — Hauling at Golden Hour</span>
-    </div>
+    <?php
+    echo denson_cel_media_panel(
+      array(
+        'image_id' => denson_cel_site_image_id( 'denson_cel_img_final_cta' ),
+        'glyph'    => '03',
+        'index'    => 'FIG. 04',
+        'tag'      => 'Scene 03 — Hauling at Golden Hour',
+      )
+    );
+    ?>
     <div class="final-cta__scrim"></div>
     <div class="final-cta__content container" data-reveal>
       <h2 class="display-2">Ready to Get to Work?</h2>

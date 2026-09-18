@@ -35,12 +35,16 @@ get_header();
   </section>
 
   <section class="final-cta">
-    <div class="media-panel" aria-hidden="true">
-      <span class="media-panel__glyph">03</span>
-      <span class="media-panel__index">FIG. 04</span>
-      <div class="media-panel__frame"></div>
-      <span class="media-panel__tag">Scene 03 — Hauling at Golden Hour</span>
-    </div>
+    <?php
+    echo denson_cel_media_panel(
+      array(
+        'image_id' => denson_cel_site_image_id( 'denson_cel_img_final_cta' ),
+        'glyph'    => '03',
+        'index'    => 'FIG. 04',
+        'tag'      => 'Scene 03 — Hauling at Golden Hour',
+      )
+    );
+    ?>
     <div class="final-cta__scrim"></div>
     <div class="final-cta__content container" data-reveal>
       <h2 class="display-2">Don't See What You Need?</h2>

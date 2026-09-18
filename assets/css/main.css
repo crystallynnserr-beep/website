@@ -478,6 +478,21 @@ input,textarea{ font:inherit; }
 a.media-panel:hover .media-panel__frame{ border-color:rgba(205,91,30,.6); }
 a.media-panel:hover .media-panel__glyph{ color:rgba(205,91,30,.16); }
 
+/* Photo mode — a real image has been uploaded (WordPress theme only; see
+   denson_cel_media_panel() in functions.php). Suppress the schematic
+   diagonal-line texture (it would look like an interference pattern over
+   a real photo) but keep the fine grain, corner frame, and caption for
+   brand consistency. */
+.media-panel--photo::before{ display:none; }
+.media-panel__photo-img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+
 /* ---------- Hero ---------- */
 .hero{
   position:relative;
@@ -719,6 +734,10 @@ a.media-panel:hover .media-panel__glyph{ color:rgba(205,91,30,.16); }
   display:flex;
   flex-direction:column;
   justify-content:flex-end;
+  /* Protects the overlaid name/tag against whatever photo ends up behind
+     it — a real uploaded photo won't always be graded dark like the
+     schematic placeholder is, so this can't assume a dark backdrop. */
+  background:linear-gradient(180deg, transparent 0%, transparent 45%, rgba(20,31,32,.88) 100%);
 }
 .fleet-tile__name{
   font-family:var(--font-display);

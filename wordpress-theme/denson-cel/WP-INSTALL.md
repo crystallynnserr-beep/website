@@ -62,7 +62,38 @@ template, then **Publish**.
 automatically for your site's front page regardless of your Settings →
 Reading choice.
 
-## 4. Add your real contact details
+## 4. Add your photos
+
+Every image slot on the site starts as a designed placeholder (grain,
+corner frame, faint watermark) and automatically switches to a real photo
+the moment you upload one — no code, no re-zipping the theme. There are
+two places to add photos:
+
+**A. Each equipment unit's photo** — set it right on that unit's page:
+1. **Pages**, open e.g. "JLG 660SJ"
+2. In the right-hand sidebar, find **Featured Image** → **Set featured image**
+3. Upload or choose a photo, then **Update** the page
+
+That one photo is reused everywhere that unit appears: its own page hero,
+the home page fleet grid, the Equipment index, and any "You Might Also
+Need" cross-sell tile on other units' pages. Do this once per unit (6
+photos total) rather than uploading the same image repeatedly.
+
+**B. The home page scenes and industry photos** — these aren't tied to a
+single page, so they get their own screen:
+1. **Settings → Site Images** (in the WordPress admin sidebar)
+2. Click **Choose Image** on any of the 7 rows (the three cinematic scenes
+   — hero, mission, story — the final "Ready to Get to Work?" scene, and
+   the three "Who We Serve" industry photos)
+3. **Save Images** at the bottom
+
+Leave any slot empty to keep showing its placeholder there — nothing
+breaks, and you can fill slots in gradually as photos become available.
+Recommended: wide/landscape shots for Hero and the Final CTA scene;
+taller shots for Mission, Story, and the industry photos work best (they
+crop to a portrait frame). Any size works — the theme crops it to fit.
+
+## 5. Add your real contact details
 
 The footer currently shows placeholders:
 
@@ -78,7 +109,7 @@ real text. If Bluehost has the Theme File Editor disabled for security
 (common on managed WP plans), edit the file over FTP/SFTP instead, or
 send me the details and I'll update it and re-zip.
 
-## 5. The "Rent Equipment" link
+## 6. The "Rent Equipment" link
 
 Every button on the site points to one place, controlled from a single
 function in `functions.php`:
@@ -92,13 +123,15 @@ function denson_cel_rent_url() {
 If that URL ever changes, update it once here — every button site-wide
 follows automatically.
 
-## 6. What's still a placeholder
+## 7. What's still a placeholder
 
-- **Imagery:** every photo/video slot is a designed "technical schematic"
-  panel (grain, corner brackets, unit glyph) standing in for real
-  photography or the Higgsfield cinematic footage described in
-  `BUILD-PLAN.md` §5–6. The site is fully functional and on-brand as-is;
-  swapping in real photography later is a design pass, not a rebuild.
+- **Imagery you haven't uploaded yet:** any slot left empty in step 4
+  keeps showing the designed "technical schematic" panel (grain, corner
+  brackets, unit glyph) instead of a broken image — the site always looks
+  intentional, whether you've added 0 photos or all 13. For the cinematic
+  quality described in `BUILD-PLAN.md` §5–6 (the three Higgsfield scene
+  concepts), commissioned video is still a future upgrade; static photos
+  in Site Images are a fully supported stand-in today.
 - **Fonts:** the brief specifies Trade Gothic Bold, which has no free
   web-license file. The theme uses **Oswald** (a close free match) as the
   production stand-in. If you obtain a licensed Trade Gothic webfont file,
