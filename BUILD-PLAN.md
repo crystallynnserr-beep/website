@@ -19,7 +19,7 @@ This site flips that. It treats heavy equipment the way a premium auto brand tre
 **Site scope for this build:**
 1. Home page (full cinematic scroll experience)
 2. Equipment fleet index page
-3. Seven individual equipment detail pages (one per unit)
+3. Six individual equipment detail pages (one per unit)
 4. Shared footer / header / CTA system
 
 ---
@@ -132,17 +132,16 @@ A Peterbilt 680 pulling out of frame down a job access road at golden hour, low 
 
 ```
 /                              Home (full cinematic scroll)
-/equipment                     Fleet index — all 7 units, filterable
+/equipment                     Fleet index — all 6 units, filterable
 /equipment/jlg-660sj            JLG 660SJ — Telescopic Boom Lift
-/equipment/jlg-1044              JLG 1044 — Telehandler   *(see note below)*
-/equipment/jlg-10054            JLG 10054 — Telehandler / Lift *(see note below)*
+/equipment/skytrak-10054         SkyTrak 10054 — Telehandler
 /equipment/jlg-1055              JLG 1055 — Telehandler
 /equipment/jlg-600aj             JLG 600AJ — Articulating Boom Lift
 /equipment/jlg-800aj             JLG 800AJ — Articulating Boom Lift
 /equipment/peterbilt-680         Peterbilt 680 — Hauling Truck
 ```
 
-> **Assumption to verify:** the source list included "JLG 10043" and "JLG 10054," which aren't standard JLG model numbers (the real telehandler line runs 1044/1055). These have been preserved exactly as provided rather than silently merged, since this is real inventory data — but flag any typos to me and I'll correct the two affected product pages in one pass; nothing else in the build depends on getting the exact digits right.
+**Confirmed:** "JLG 10043" has been removed from the fleet (duplicate/typo). "JLG 10054" is a **SkyTrak® 10054** telehandler — SkyTrak is JLG's dedicated telehandler brand, so this unit is branded "SkyTrak" (not "JLG") throughout the site, including its detail page header, spec strip, and fleet tile. Fleet count is now six units.
 
 Each equipment page follows an identical template (see §10) for consistency and fast build velocity: hero image/spec strip, description, capability stats, use-case callouts, and a persistent Rent This Unit CTA.
 
@@ -179,7 +178,7 @@ A thin, high-contrast strip directly beneath the hero fold that counts up on scr
 
 | Stat | Label |
 |---|---|
-| **7+** | New JLG & Peterbilt units in active rotation |
+| **6+** | New JLG, SkyTrak & Peterbilt units in active rotation |
 | **100%** | Inspected & maintained before every rental |
 | **24–48 hr** | Typical turnaround to get equipment on your site *(placeholder — confirm)* |
 | **7 Days** | A week rental availability, daily / weekly / monthly terms |
@@ -236,17 +235,16 @@ This is the equipment showcase referenced in the brief as "Built for Heavy Work.
 - **Eyebrow:** THE FLEET
 - **H2:** Built for Heavy Work.
 - **Body:** From lifting and loading to hauling and everything in between, Denson's commercial-grade fleet is ready to take on the demands of your next job.
-- **Layout:** Asymmetric editorial grid (not a uniform product-card grid) — a large "hero" tile for the featured unit, five/six smaller tiles beneath, each tile: full-bleed equipment image (duotone-graded), unit name in Trade Gothic, one-line capability tag (e.g., "60 ft Working Height"), hover state reveals `#CD5B1E` border + "View Specs →".
+- **Layout:** Asymmetric editorial grid (not a uniform product-card grid) — a large "hero" tile for the featured unit, five smaller tiles beneath, each tile: full-bleed equipment image (duotone-graded), unit name in Trade Gothic, one-line capability tag (e.g., "60 ft Working Height"), hover state reveals `#CD5B1E` border + "View Specs →".
 - **Button (section-level):** `EXPLORE OUR EQUIPMENT` → `/equipment`
 
-**The 7 units featured (each links to its detail page, §7):**
+**The 6 units featured (each links to its detail page, §7):**
 1. JLG 660SJ — Telescopic Boom Lift
-2. JLG 1044 — Telehandler
-3. JLG 10054 — Telehandler
-4. JLG 1055 — Telehandler
-5. JLG 600AJ — Articulating Boom Lift
-6. JLG 800AJ — Articulating Boom Lift
-7. Peterbilt 680 — Hauling Truck
+2. SkyTrak 10054 — Telehandler
+3. JLG 1055 — Telehandler
+4. JLG 600AJ — Articulating Boom Lift
+5. JLG 800AJ — Articulating Boom Lift
+6. Peterbilt 680 — Hauling Truck
 
 ### Equipment Detail Page Template (applies to all 7 pages under `/equipment/*`)
 1. **Header strip:** breadcrumb (Equipment / [Unit Name]), unit name in huge Trade Gothic
@@ -388,8 +386,7 @@ This choice is deliberate: no build pipeline/bundler required, the site ships as
 /index.html
 /equipment/index.html
 /equipment/jlg-660sj/index.html
-/equipment/jlg-1044/index.html
-/equipment/jlg-10054/index.html
+/equipment/skytrak-10054/index.html
 /equipment/jlg-1055/index.html
 /equipment/jlg-600aj/index.html
 /equipment/jlg-800aj/index.html
