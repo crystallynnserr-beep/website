@@ -1,0 +1,14 @@
+/*
+Theme Name: Denson Commercial Equipment Leasing
+Description: Custom industrial-editorial theme for Denson Commercial Equipment Leasing, built from BUILD-PLAN.md. Cinematic scroll home page, equipment fleet index, and per-unit equipment pages.
+Author: Denson Commercial Equipment Leasing
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Text Domain: denson-cel
+*/
+
+/* This file intentionally holds only the required WordPress theme header.
+   The full design system lives in /assets/css/main.css and is enqueued
+   from functions.php — that file is a straight copy of the one used in
+   the static build, so both stay in sync if you update either. */
