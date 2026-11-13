@@ -3,25 +3,27 @@
 
 **Prepared as a creative direction + technical build document.**
 **Target quality bar:** $10,000 commercial production. Cinematic, industrial, confident, fast.
+**Delivery format:** a custom WordPress theme built entirely around no-code editing — see §23. Not a hand-coded static site, and not dependent on any page-builder plugin.
 
 ---
 
 ## 1. Website Overview
 
-Equip & Haul Equipment Leasing rents heavy commercial equipment to contractors and industrial operators — and, unlike most competitors, moves it for them too. The name says the whole business model: **Equip** (the machine) **&** **Haul** (the move). That dual capability is the single most ownable fact about this brand, and this site is built to make it impossible to miss.
+Equip & Haul Equipment Leasing rents heavy commercial equipment to contractors and industrial operators — and, unlike most competitors, moves it for them too. The name states the whole business model: **Equip** (the machine) **&** **Haul** (the move). That dual capability is the single most ownable fact about this brand, and this site is built to make it impossible to miss.
 
-Most equipment rental sites read like parts catalogs: dense spec tables, stock photography, a contact form buried three clicks deep. This site instead treats the equipment the way a premium vehicle brand treats a launch — cinematic footage, huge confident type, generous negative space — while using the scroll itself to tell one clear story: *you don't need two vendors. You need one call.*
+Most equipment rental sites read like parts catalogs: dense spec tables, stock photography, a contact form buried three clicks deep. This site instead treats the equipment the way a premium vehicle brand treats a launch — cinematic, edge-to-edge photography, huge confident type, generous negative space — while using the scroll itself to tell one clear story: *you don't need two vendors. You need one call.*
 
-**Primary conversion goal:** get a qualified renter to a quote/contact action in under 10 seconds of landing — a single, repeated, unmissable CTA.
+**Primary conversion goal:** get a qualified renter to the live reservation system in under 10 seconds of landing — a single, repeated, unmissable `RENT EQUIPMENT` action.
 
-**Secondary goal:** establish Equip & Haul as the obvious choice over a single-service competitor by making the "equipment + hauling, one partner" promise the first thing a visitor understands, not a line item they discover later.
+**Secondary goal:** make the 7-unit fleet feel like a confident, curated commercial-grade lineup rather than a rental-yard inventory dump — each machine gets the same editorial treatment a flagship product gets on a brand site.
 
 **Site scope for this build:**
 1. Home page (full cinematic scroll experience)
-2. Fleet / Services page (category-level — see §13 note on inventory)
-3. Shared header / footer / CTA system
+2. Fleet & Equipment page (index of all 7 units)
+3. Seven individual equipment pages — JLG 660SJ, JLG 1043, JLG SkyTrak 10054, JLG 1055, JLG 600AJ, JLG 800AJ, Peterbilt 680 — all built from **one single reusable page template** (see §23), not seven hand-coded pages
+4. Shared header / footer / CTA system
 
-**Delivery format:** a custom WordPress theme, not a hand-coded static site. The client has said directly they are not a coder, so every page is a normal WordPress Page with a page template assigned, and every piece of copy and every photo is editable through plain wp-admin forms — no HTML, no code, ever required to update content. See §23 for exactly how that works.
+**Non-coder editing requirement (drives every technical decision in this plan):** the client has been explicit, twice, that they are not a coder and must be able to edit this themselves. Every page in this build is an ordinary WordPress Page with a template assigned, and every headline, paragraph, spec, bullet, and photo is a plain labeled field in the page editor — never HTML, never a file. See §23 for exactly how, including how the real copy below ships pre-loaded so there's nothing to re-type on day one.
 
 ---
 
@@ -29,89 +31,83 @@ Most equipment rental sites read like parts catalogs: dense spec tables, stock p
 
 > **One call for the machine. One call for the move.**
 
-Every contractor renting equipment solves two problems: getting the right machine, and getting it to the site. Most rental yards solve only the first and leave you finding your own flatbed. Equip & Haul's entire case rests on solving both — which means the brand doesn't compete on having better machines (everyone rents the same catalog), it competes on removing a logistics problem the whole category treats as "not our job."
+Every contractor renting equipment solves two problems: getting the right machine, and getting it to the site. Most rental yards solve only the first and leave the second to the contractor. Equip & Haul's name — and its business — solves both, which means the brand doesn't compete on having a bigger catalog (everyone rents comparable JLG/SkyTrak equipment), it competes on removing a logistics problem the rest of the category treats as someone else's job.
 
 **Positioning statement:**
-For commercial contractors and industrial operators who need equipment on site without coordinating a separate hauling vendor, Equip & Haul Equipment Leasing is the rental partner that equips the job *and* delivers it — inspected, ready, and on time — because splitting "the machine" and "the move" across two vendors is exactly the kind of friction that stalls a job.
+For commercial contractors and industrial operators who need equipment on site without coordinating a separate hauling vendor, Equip & Haul Equipment Leasing is the rental partner that equips the job *and* delivers it — inspected, maintained, and ready to perform — because splitting "the machine" and "the move" across two vendors is exactly the kind of friction that stalls a job.
 
 **Reasons to believe:**
-- Hauling isn't an add-on quote — it's built into how the company is named and run
-- Every unit inspected and maintained before it leaves the yard
+- A hauling capability built into the company's name and operations, not an upsell
+- Every machine inspected, maintained, and ready to perform before it leaves the yard
+- A seven-unit commercial-grade fleet covering reach, lift capacity, and long-haul transport
 - Flexible daily / weekly / monthly terms, no long-term commitment
-- One point of contact for the equipment and the logistics, start to finish
 
 ---
 
 ## 3. Brand Personality
 
-Equip & Haul is the partner who shows up with the machine already on the trailer. Tough, direct, dependable — the brand voice of someone who solves problems before you have to ask.
+Equip & Haul is the partner who shows up with the machine already on the trailer. Tough, direct, dependable — the voice of someone who solves the logistics problem before the contractor has to raise it.
 
 | Trait | What it means on the page |
 |---|---|
-| **Capable** | States what it does plainly. "We bring it" beats "logistics solutions." |
-| **Tough** | Steel-and-safety-yellow visual language; nothing precious or soft. |
+| **Capable** | States what it does plainly — "ready to perform," not "industry-leading solutions." |
+| **Tough** | Steel, near-black, and safety-yellow visual language; nothing precious or soft. |
 | **Direct** | Short sentences, active verbs, no corporate padding. |
-| **Dependable** | Consistent structure, consistent promise, repeated on every page. |
-| **One-Stop** | Every section reinforces "equipment + hauling," never equipment alone. |
-
-**Brand voice rules:**
-- Lead with the outcome (the job keeps moving), not the feature list.
-- Say "equipment and the move" or equivalent phrasing often enough that the dual-service positioning never goes unstated for long.
-- Short imperative CTAs: Request Equipment. Get a Quote. Get to Work.
-- No filler adjectives (amazing, best-in-class, cutting-edge).
+| **Dependable** | The same promise — inspected, maintained, ready — repeated on every unit page. |
+| **One-Stop** | Equipment and hauling named together often enough that the dual service never goes unstated for long. |
 
 ---
 
 ## 4. Visual Direction
 
-**Style:** Industrial Editorial Minimalism with Premium Industrial Brutalism accents — full-bleed cinematic equipment/hauling imagery, oversized cropped type, hard-edged UI, visible grid, subtle film grain. Same disciplined, confident system as a premium construction-tech brand, not a parts catalog.
+**Style:** Industrial Editorial Minimalism with Premium Industrial Brutalism accents, per the client's own direction: **oversized condensed headlines, dark charcoal/near-black backgrounds, warm industrial white, a single safety-inspired accent color, heavy grid lines, and large edge-to-edge equipment photography** — expanded below into a full system.
 
 **Color system (client-specified):**
 
 | Token | Hex | Role |
 |---|---|---|
-| `--eh-iron` | `#2C3E50` | Primary dark background (Iron Blue), primary text on light |
-| `--eh-grey` | `#95A5A6` | Secondary neutral — hairlines, dividers, secondary text, muted labels |
-| `--eh-yellow` | `#FFD400` | Primary accent — CTAs, key emphasis, numerals, active states |
-| `--eh-white` | `#F5F5F5` | Primary light background, reversed text on dark sections |
+| `--eh-iron` | `#2C3E50` | Primary dark / near-black background (Iron Blue), primary text on light |
+| `--eh-grey` | `#95A5A6` | Secondary neutral — hairlines, heavy grid rules, dividers, secondary text |
+| `--eh-yellow` | `#FFD400` | The one safety-inspired accent — CTAs, key emphasis, numerals, active states |
+| `--eh-white` | `#F5F5F5` | Warm industrial white — primary light background, reversed text on dark |
 
-**Usage discipline:** `#2C3E50` and `#F5F5F5` carry roughly 85% of the page, exactly as in a disciplined two-tone system. `#FFD400` (construction/safety yellow) is the single "go" color — CTAs and the most important numerals/emphasis only — so it reads as a deliberate signal, the way safety yellow reads on an actual jobsite, never as decoration. `#95A5A6` handles everything structural-but-quiet: hairline rules, captions, secondary body copy on dark backgrounds, disabled/inactive states. There is no secondary accent color in this palette (unlike a typical two-accent system) — that restraint is a feature: one accent color used with total consistency reads as more premium than two competing for attention.
+**Usage discipline:** `#2C3E50` and `#F5F5F5` carry roughly 85% of the page. `#FFD400` is the single "go" color — reserved for CTAs and the most important emphasis only, so it reads the way safety yellow reads on an actual jobsite: a deliberate signal, never decoration. `#95A5A6` draws the **heavy grid lines** the client asked for — a visible structural rule system between sections and columns, thicker and more present than a typical hairline, reinforcing the "shop-drawing" industrial feel. One accent color, used with total consistency, reads as more premium than two competing for attention.
 
-**Imagery treatment:** All equipment and hauling photography/video graded toward the `#2C3E50` shadow tone with `#FFD400` reserved for genuine safety-yellow elements already in frame (equipment paint, vests, striping) rather than added artificially — the grade should look like one commissioned shoot, not a filter.
+**Imagery:** large, edge-to-edge equipment photography is the backbone of this site — every unit page leads with a full-bleed shot (see §13 for the specific shot direction supplied for each of the 7 units), graded toward the `#2C3E50` shadow tone so a mixed set of photos reads as one commissioned shoot.
 
 ---
 
 ## 5. Higgsfield Seedance 2.0 Asset Generation
 
-No existing footage library exists for Equip & Haul, so hero and section backdrops are planned as short cinemagraphs generated with **Higgsfield Seedance 2.0**, graded to the palette above so they read as one commissioned shoot.
+No commissioned footage exists yet, so hero/section backdrops are planned as short cinemagraphs generated with **Higgsfield Seedance 2.0**, graded to the palette above.
 
 **Generation spec (applies to all clips):**
 - Resolution: **1080p (1920×1080)**, 16:9 for desktop hero; a 9:16 crop derived per clip for mobile
 - Duration: **8–12 seconds**, seamlessly loopable (matched first/last frame) for a muted autoplay background loop with no visible cut
-- Frame rate: 24fps — deliberate, unhurried motion; this brand earns trust by looking unshakeable, not fast
-- Camera: slow dolly-in, slow push, low-angle tilt only. No whip pans, no fast cuts.
-- Lighting: golden-hour or overcast jobsite light, matching the cool iron-blue grade with warm practical highlights
-- Subject: real equipment/hauling silhouettes (telehandler- or boom-lift-type machine, a flatbed/trailer hauling a loaded unit) in an industrial yard or active jobsite — no people in hazard positions
+- Frame rate: 24fps — deliberate, unhurried motion
+- Camera: slow dolly-in, slow push, low-angle tilt only — no whip pans, no fast cuts
+- Lighting: golden-hour or overcast jobsite light, matching the iron-blue grade with warm practical highlights
+- Subject: telehandler/boom-lift-type equipment and a Peterbilt hauling a loaded trailer, in an industrial yard or active jobsite — no people in hazard positions
 - Post: 6–10% film grain, slight vignette, grade to brand palette
 
-**Delivery format:** MP4 (H.264), muted `autoplay loop playsinline`, with a static poster-frame JPG for the `poster` attribute and as the `prefers-reduced-motion`/no-video fallback.
+**Delivery format:** MP4 (H.264), muted `autoplay loop playsinline`, with a static poster-frame JPG for the `poster` attribute and the `prefers-reduced-motion`/no-video fallback.
 
-**Sequencing note:** the site ships fully functional with a designed placeholder system first (see §17), then real photography or Seedance footage is layered into the three hero moments below once generated — the build is never blocked on generation queue time or available credits.
+**Sequencing:** the site ships fully functional with the designed placeholder-panel system first (§17); real photography (the client's own equipment shots, per the shot list in §13) or Seedance footage layers in afterward with zero rebuild.
 
 ---
 
 ## 6. Three Cinematic Scenes
 
 ### Scene 1 — "Staged at Sunrise" (Hero)
-Wide, low dolly-in across a quiet equipment yard at dawn. Mist, cool iron-blue shadow, a machine staged and silhouetted against early light, a flash of safety yellow on its paint or striping catching the first sun. Nothing moves but light and the slow camera drift. Communicates *readiness*.
+Wide, low dolly-in across a quiet equipment yard at dawn. Mist, cool iron-blue shadow, a telehandler and boom lift staged and silhouetted against early light, safety yellow catching the first sun. Communicates *readiness*.
 **Placement:** Hero background, behind "Equipment That Works as Hard as You Do."
 
 ### Scene 2 — "The Lift" (Mission section)
-Mid-shot, slow push-in on a piece of lifting/loading equipment at work on an active site — deliberate, powerful, unhurried. Communicates *capability*.
-**Placement:** Background/side panel behind the mission section, duotone still on scroll-out.
+Mid-shot, slow push-in on a telehandler or boom lift at work on an active site — deliberate, powerful, unhurried. Communicates *capability*.
+**Placement:** Background/side panel behind "Own Less. Do More.," duotone still on scroll-out.
 
 ### Scene 3 — "On the Move" (Final CTA)
-A flatbed hauling a loaded piece of equipment down a jobsite access road at golden hour, low angle, dust catching the light. This is the scene that makes the "& Haul" half of the brand visible and literal — the payoff shot right before the final CTA.
+A Peterbilt 680 hauling a loaded trailer down a jobsite access road at golden hour, low angle, dust catching the light — the scene that makes the "& Haul" half of the brand literal. The payoff shot before the final CTA.
 **Placement:** Final CTA section, full-bleed background, reversed type over a darkened grade.
 
 ---
@@ -119,280 +115,376 @@ A flatbed hauling a loaded piece of equipment down a jobsite access road at gold
 ## 7. Website Structure (Sitemap)
 
 ```
-/                  Home — WordPress page using the "Home" page template
-/fleet             Fleet & Services — WordPress page using the "Fleet & Services" page template
+/                                Home — Page Template: "Home"
+/fleet                           Fleet & Equipment index — Page Template: "Fleet & Equipment"
+/fleet/jlg-660sj                 Page Template: "Equipment Unit" (reused for all 7)
+/fleet/jlg-1043                  Page Template: "Equipment Unit"
+/fleet/jlg-skytrak-10054         Page Template: "Equipment Unit"
+/fleet/jlg-1055                  Page Template: "Equipment Unit"
+/fleet/jlg-600aj                 Page Template: "Equipment Unit"
+/fleet/jlg-800aj                 Page Template: "Equipment Unit"
+/fleet/peterbilt-680             Page Template: "Equipment Unit"
 ```
 
-Every URL in this build is an ordinary WordPress **Page** with a custom **Page Template** assigned to it (a dropdown choice in the normal page editor) — not a hand-built HTML file. That is the core requirement of this build: the client is not a coder, so every page must be something they create, rename, and edit entirely inside wp-admin. See §23 for exactly how headline/body copy on each page stays editable without touching a file.
+Every one of these is an ordinary WordPress Page. The 7 unit pages all use the **same page template** — there is one "Equipment Unit" template in the theme, and each page supplies its own headline, body copy, specs, "Ideal For" list, photo, and button text through labeled fields. Adding an 8th unit later means creating one new page with that template and filling in the fields — never writing code. See §23.
 
-This build intentionally ships a smaller sitemap than a full per-unit catalog (compare: a prior project for a different client had 6 named units with model-specific spec sheets). **No specific inventory, model numbers, or unit list was provided for Equip & Haul** — inventing specific equipment model numbers presented as this company's real fleet would be fabricating facts, so §13 is built at the service-category level instead (Aerial & Lift Equipment, Material Handling, Hauling & Transport). The moment real inventory is provided, the Fleet page's category tiles become named-unit tiles using the exact same editable-field pattern — a content change made entirely in wp-admin, not a rebuild.
+**Global navigation:** Logo (left) · Fleet & Equipment (link to /fleet) · Rent Equipment button (right, always `#FFD400`, always the live reservation link). Minimal by design.
 
-**Global navigation:** Logo (left) · Fleet & Services (link to /fleet) · Get a Quote button (right, always `#FFD400`, always the primary conversion action). Minimal by design — a conversion path, not a content hub.
+**Reservation system:** `https://reserve.loadmaxrentals.com/categories?intent=rent` — every `RENT EQUIPMENT` / `CHECK AVAILABILITY` button in this plan points here. This is a real, working link supplied by the client; no placeholder destination is needed anywhere in this build.
 
 ---
 
 ## 8. Hero Section
 
-**Layout:** Full-viewport-height (100svh), Scene 1 video/poster background, Iron Blue grade with grain, kinetic headline reveal on load (word/line mask-up, ~0.9s stagger).
+**Layout:** Full-viewport-height (100svh), Scene 1 video/poster background, Iron Blue grade with grain, kinetic headline reveal on load.
 
-**Copy (expanded from the brief, structured for kinetic type):**
+- **Eyebrow:** COMMERCIAL EQUIPMENT & HAULING
+- **H1 (huge, Trade Gothic Bold):** Equipment That Works as Hard as You Do
+- **Subhead:** Equip & Haul delivers dependable commercial equipment and hauling solutions that are ready when you are, so you can keep the job moving.
+- **Scroll cue:** animated down-chevron + "Scroll" micro-label, fades on first scroll input
 
-- **Eyebrow (small, tracked-out, `#FFD400`):** COMMERCIAL EQUIPMENT & HAULING
-- **H1 (huge, Trade Gothic Bold, `#F5F5F5`):** Equipment That Works as Hard as You Do
-- **Subhead (Open Sans, `#F5F5F5` at 85% opacity):** Equip & Haul delivers dependable commercial equipment and hauling solutions that are ready when you are, so you can keep the job moving.
-- **Scroll cue:** small animated down-chevron + "Scroll" micro-label, fades on first scroll input
+**Section 2 — "The Right Equipment. Ready for the Job." (immediately below hero):**
 
-**Section 2 (immediately below hero — "One Call. Equipped and Hauled."):**
+- **H2:** The Right Equipment. Ready for the Job.
+- **Body:** Equip & Haul provides dependable, high-performance equipment for commercial construction, industrial work, and heavy hauling. From telehandlers and boom lifts to Peterbilt hauling trucks, every machine is inspected, maintained, and ready to perform.
 
-- **H2:** One Call. Equipped and Hauled.
-- **Body:** Most rental yards stop at the gate — you're on your own getting the machine to site. Equip & Haul doesn't. Every rental comes backed by our own hauling capability, so the equipment you book is the equipment that shows up, on schedule, without a second vendor in the mix.
-
-  Whether you need a single unit for a week or a fleet for a phase of the job, we make it simple: one point of contact for the machine and the move.
-- **Micro-CTA line:** Need equipment moved and ready?
-- **Supporting line:** Tell us the job. We'll handle the machine and the logistics.
-- **Primary Button:** `GET A QUOTE` → `/fleet#contact` *(placeholder destination — see §16, no live quote system or reservation link was supplied; wire this to the client's actual contact method before launch)*
+  Whether you're lifting, loading, staging, or hauling, we make it easy to secure the equipment your operation needs. Flexible rental terms and responsive support help you stay productive and keep the job moving.
+- **Micro-CTA line:** Need Equipment on the Job?
+- **Supporting line:** Tell us what the work demands. We'll help you find the right equipment and get to work.
+- **Primary Button:** `RENT EQUIPMENT` → `https://reserve.loadmaxrentals.com/categories?intent=rent` (new tab, `rel="noopener"`)
 
 ---
 
 ## 9. Animated Stats Strip
 
-Thin, high-contrast strip beneath the hero fold, counts up on scroll. **Figures below are placeholders sized to feel credible — replace with Equip & Haul's real numbers before launch (flagged inline, same discipline as spec figures elsewhere in this plan).**
+A thin, high-contrast strip beneath the hero fold, counts up on scroll. Unlike a typical placeholder stats row, **"7+ Units" is a real, accurate count of this exact fleet**, not an invented figure — the rest remain flagged placeholders pending the client's real numbers.
 
 | Stat | Label |
 |---|---|
-| **100%** | Inspected & maintained before every rental |
-| **1 Call** | For the equipment and the haul — no second vendor |
+| **7+** | Commercial-grade units in the Equip & Haul fleet |
+| **100%** | Inspected, maintained, and ready to perform before every rental |
 | **24–48 hr** | Typical turnaround to get equipment on your site *(placeholder — confirm)* |
-| **Day / Wk / Mo** | Flexible terms, stop paying when the job's done |
+| **Day / Wk / Mo** | Flexible terms — stop paying when the work is finished |
 
 ---
 
-## 10. Mission Section — "One Call. Equipped and Hauled."
+## 10. Mission Section — "Own Less. Do More."
 
-Scene 2 ("The Lift") plays as a pinned right-column panel; copy scrolls past on the left, classic editorial split — same pattern as §8's section 2, expanded into its own full scroll moment with the three pillars immediately beneath it.
+Scene 2 ("The Lift") plays as a pinned right-column panel; copy scrolls past on the left.
+
+- **Eyebrow:** Own Less. Do More.
+- **H2:** Own Less. Do More.
+- **Body:** Keep your capital focused on the people, projects, and opportunities that grow your business. Equip & Haul gives you access to commercial-grade equipment without the upfront cost, ongoing maintenance, or long-term commitment of ownership.
+
+  Rent the right machine for the job and keep it for as long as you need it. With flexible daily, weekly, and monthly rental options, you can keep your equipment working, your projects moving, and your capital in your business.
 
 ---
 
 ## 11. Three Pillars Section
 
-Three equal-width columns, large Trade Gothic numeral (01/02/03 in `#FFD400`), short headline, tight paragraph. Hairline dividers in `#95A5A6`, stacking on mobile.
+The brief supplies two pillars; a third is added here to complete the triptych the brand system calls for, pulled directly from the recurring "inspected, maintained, ready to perform" promise already established in §8 — not an invented new claim.
 
 **01 — Keep Your Capital Working**
-Avoid a major equipment purchase and put those dollars toward the people, projects, and opportunities that grow your business.
+Avoid tying up capital in a major equipment purchase. Put those resources toward the areas of your business that generate growth.
 
-**02 — Equipment *and* the Move**
-Most rental companies stop at the gate. We don't. Hauling is built into how we operate, not a separate quote from a separate vendor — one call gets you both.
+**02 — Rent on Your Terms**
+Need equipment for a day, a week, or a month? Rent what you need, when you need it, and stop paying when the work is finished.
 
-**03 — Always Jobsite-Ready**
-Every machine is inspected and maintained before it leaves the yard, so it shows up ready to run — not something you troubleshoot on someone else's schedule.
+**03 — Always Ready to Perform** *(added to complete the triptych)*
+Every machine is inspected and maintained before it leaves the yard, so it shows up ready to perform — not something you troubleshoot on someone else's schedule.
 
 ---
 
 ## 12. Story Section
 
-No founder history was supplied, so this is written as a **philosophy statement** — honest, not a fabricated company history — and is the natural place to drop in real history later without restructuring the page.
+No founder history was supplied, so this is written as a philosophy statement — honest, not a fabricated company history — and is the natural place to add real history later.
 
 - **Eyebrow:** WHY EQUIP & HAUL
 - **H2:** Two Problems. One Partner.
-- **Body:** Getting a machine to a jobsite is two problems wearing one invoice: finding the right equipment, and getting it there. Most of this industry only solves the first one — and leaves you to figure out the second, usually under a deadline.
+- **Body:** Getting a machine to a jobsite is two problems wearing one invoice: finding the right equipment, and getting it there. Most of this industry only solves the first — and leaves the second to the contractor, usually under a deadline.
 
-  We built Equip & Haul around closing that gap. Every rental is backed by our own hauling capability, every machine is inspected before it leaves the yard, and every job gets one point of contact instead of two vendors who've never talked to each other. That's not a value-add. That's the whole business.
+  We built Equip & Haul around closing that gap. Every machine is inspected, maintained, and ready to perform before it leaves the yard, and every job gets one point of contact instead of two vendors who've never talked to each other. That's not a value-add. That's the business.
 
 ---
 
-## 13. Fleet & Services Section — "Built for Heavy Work"
+## 13. Product Section — The Fleet (Equipment Page)
+
+### Home page teaser ("Built for Heavy Work.")
 
 - **Eyebrow:** THE FLEET
-- **H2:** Equipment and Hauling, Under One Roof.
-- **Body:** From lifting and loading to getting it all to site, Equip & Haul's commercial-grade fleet and hauling capability are built to take on the next phase of your job — together.
-- **Layout:** Three service-category tiles (not individual named units — see sitemap note, §7), each full-bleed duotone-graded image, category name in Trade Gothic, one-line description, hover reveals `#FFD400` border + "Learn More →".
+- **H2:** Built for Heavy Work.
+- **Body:** From lifting materials at height to reaching over obstacles and hauling across long distances, our commercial-grade fleet is prepared for demanding jobsites and serious workloads.
+- **Button:** `EXPLORE OUR EQUIPMENT` → `/fleet`
 
-**Category tiles:**
-1. **Aerial & Lift Equipment** — Boom lifts and telehandlers for reach, height, and material placement.
-2. **Material Handling** — Loaders and handling equipment built for staging and site logistics.
-3. **Hauling & Transport** — Our own capability to move your equipment to and from site — the half of the business most competitors don't offer.
+### Fleet & Equipment page header
 
-**Button (section-level):** `VIEW FLEET & SERVICES` → `/fleet`
+- **H1:** Equipment Built to Perform.
+- **Body:** New, commercial-grade equipment for lifting, reaching, loading, and hauling. Explore the Equip & Haul fleet and find the machine that matches the demands of your next job.
+- **Button:** `CHECK AVAILABILITY` → reservation link
 
-> **Note for the client:** supply your actual fleet list (makes/models, categories, spec sheets) and this section upgrades to named unit tiles with individual detail pages — same proven template pattern as a prior per-unit build, applied here once real inventory exists. Until then, this stays at the category level rather than inventing specific equipment this company may not actually operate.
+### The seven units
+
+Each unit below becomes one Equipment Unit page (§7, §23) — headline, two body paragraphs, four specs, an "Ideal For" list, a photo brief, alt text, and a `RENT THE [MODEL]` button, all as individually editable fields.
+
+> **Copy-editing note:** the source brief included inline reference links (e.g. "[JLG]," "[SkyTrak]") after several spec sentences — these read as citation artifacts from drafting, not intentional on-page links, and would look broken on a finished $10K site, so they're removed from the copy below. The spec figures themselves are kept as supplied.
+>
+> **Model-number note (confirmed):** JLG currently identifies this model as the **1043**, not 10043 — already corrected below. Verify against the model plate on the physical unit before publishing, same as the client's own note.
+
+**1. JLG 660SJ — Telescopic Boom Lift**
+- **Tagline:** Reach Out. Work Higher.
+- **Body:** The JLG 660SJ telescopic boom lift is built for jobs that require height, horizontal reach, and dependable jobsite performance. Its straight-boom design provides direct access to elevated work areas, making it a strong choice for construction, steel erection, maintenance, utilities, and industrial projects.
+
+  With a platform height of approximately 66 feet and horizontal outreach of approximately 57 feet, the 660SJ helps crews cover more ground without repeatedly repositioning the machine.
+- **Specs:** Platform Height ≈66 ft · Horizontal Outreach ≈57 ft · Capacity 500 lb (unrestricted, typical for class) · Drive 4WD
+- **Ideal For:** Steel erection · Exterior construction · Industrial maintenance · Utility work · Elevated installation
+- **Button:** `RENT THE JLG 660SJ`
+- **Suggested image:** Full side view of the 660SJ with its boom extended against an active commercial jobsite.
+- **Alt text:** JLG 660SJ telescopic boom lift available for rent from Equip & Haul.
+
+**2. JLG 1043 — Telehandler**
+- **Tagline:** Heavy Capacity. Jobsite Versatility.
+- **Body:** The JLG 1043 telehandler delivers the lifting strength and reach needed to move materials across demanding commercial jobsites. It is well suited for placing lumber, roofing materials, masonry, steel, and other heavy loads where standard forklifts can't reach.
+
+  The 1043 has a rated capacity of 10,000 pounds, a maximum lift height of 43 feet, and a maximum forward reach of approximately 30 feet.
+- **Specs:** Rated Capacity 10,000 lb · Max Lift Height 43 ft · Max Forward Reach ≈30 ft · Drive 4WD
+- **Ideal For:** Commercial construction · Framing and roofing · Masonry work · Material placement · Industrial loading
+- **Button:** `RENT THE JLG 1043`
+- **Suggested image:** Three-quarter view of the telehandler lifting a pallet of materials on a commercial construction site.
+- **Alt text:** JLG 1043 telehandler rental for commercial construction and material handling.
+
+**3. JLG SkyTrak 10054 — Telehandler**
+- **Tagline:** Greater Height. More Reach.
+- **Body:** The JLG SkyTrak 10054 is made for projects that require heavy lifting at greater heights. Its extended reach makes it especially useful on multi-story construction sites, where materials need to be placed accurately without slowing down the work below.
+
+  The 10054 offers a rated capacity of 10,000 pounds, a maximum lift height of approximately 53 feet, and forward reach of nearly 39 feet.
+- **Specs:** Rated Capacity 10,000 lb · Max Lift Height ≈53 ft · Max Forward Reach ≈39 ft · Drive 4WD
+- **Ideal For:** Multi-story construction · Roofing and framing · Structural material placement · Large commercial projects · Industrial applications
+- **Button:** `RENT THE JLG 10054`
+- **Suggested image:** The 10054 placing construction materials at an upper level of a framed building.
+- **Alt text:** JLG SkyTrak 10054 telehandler available for commercial equipment rental.
+
+**4. JLG 1055 — Telehandler**
+- **Tagline:** Maximum Reach for Demanding Jobs.
+- **Body:** The JLG 1055 combines heavy lifting capacity with extended vertical and forward reach. It is designed for large jobsites where crews need to move substantial materials and place them accurately at height.
+
+  With a rated capacity of 10,000 pounds, a maximum lift height of 55 feet, and forward reach of 42 feet, the 1055 is the longest-reaching telehandler in this group.
+- **Specs:** Rated Capacity 10,000 lb · Max Lift Height 55 ft · Max Forward Reach 42 ft · Drive 4WD
+- **Ideal For:** Large commercial construction · Multi-level material placement · Structural work · Industrial facilities · Long-reach applications
+- **Button:** `RENT THE JLG 1055`
+- **Suggested image:** Wide-angle image showing the full reach of the telehandler on a large commercial site.
+- **Alt text:** JLG 1055 high-reach telehandler rental from Equip & Haul.
+
+**5. JLG 600AJ — Articulating Boom Lift**
+- **Tagline:** Reach Up. Reach Over.
+- **Body:** The JLG 600AJ articulating boom lift is designed to reach elevated work areas that are difficult to access directly. Its articulated boom allows operators to work up and over structures, equipment, and other jobsite obstacles.
+
+  With a platform height of approximately 60 feet and horizontal outreach of nearly 40 feet, the 600AJ provides reach and maneuverability for confined or complex work areas.
+- **Specs:** Platform Height ≈60 ft · Horizontal Outreach ≈40 ft · Capacity 500 lb (typical for class) · Drive 4WD
+- **Ideal For:** Mechanical installation · Facility maintenance · Structural work · Overhead access · Confined jobsites
+- **Button:** `RENT THE JLG 600AJ`
+- **Suggested image:** The articulated boom extending over a structure or piece of industrial equipment.
+- **Alt text:** JLG 600AJ articulating boom lift for rent from Equip & Haul.
+
+**6. JLG 800AJ — Articulating Boom Lift**
+- **Tagline:** High-Reach Access Without Compromise.
+- **Body:** The JLG 800AJ provides the height and articulated reach required for large-scale construction, industrial maintenance, and complex elevated work. Its boom configuration helps operators reach up, out, and over obstacles while maintaining access to difficult work areas.
+
+  The 800AJ offers an 80-foot platform height and nearly 52 feet of horizontal outreach, making it the highest-reaching boom lift in the Equip & Haul fleet.
+- **Specs:** Platform Height 80 ft · Horizontal Outreach ≈52 ft · Capacity 500 lb (typical for class) · Drive 4WD
+- **Ideal For:** High-rise exterior work · Industrial facilities · Steel and structural projects · Large-scale maintenance · Difficult elevated access
+- **Button:** `RENT THE JLG 800AJ`
+- **Suggested image:** Full-boom profile at height with a building or industrial structure providing scale.
+- **Alt text:** JLG 800AJ articulating boom lift available for commercial rental.
+
+**7. Peterbilt 680 — Heavy Hauling Truck**
+- **Tagline:** Built for the Long Haul.
+- **Body:** The Peterbilt 680 provides the power, stability, and driver-focused performance needed for demanding hauling operations. Designed for reliable on-highway transportation, it is well suited for moving equipment, materials, and commercial loads across short or long distances.
+
+  Available truck specifications may vary by configuration, engine, axle setup, and trailer requirements — the rental page should list the exact towing capacity, transmission, cab configuration, and compatible trailers for each available unit.
+- **Specs:** Truck Class 8 · Cab Day/Sleeper (confirm per unit) · Engine Diesel · Towing Capacity *(confirm per unit)*
+- **Ideal For:** Equipment transportation · Commercial hauling · Construction logistics · Regional transportation · Long-distance hauling
+- **Button:** `RENT A PETERBILT 680`
+- **Suggested image:** Three-quarter front image of the Peterbilt connected to an equipment or flatbed trailer.
+- **Alt text:** Peterbilt 680 commercial hauling truck available from Equip & Haul.
+
+### Fleet page closing CTA
+
+- **H2:** Tell Us What You Need to Move.
+- **Body:** Not sure which machine is right for the job? Tell us what you're lifting, reaching, loading, or hauling. We'll help you identify the right equipment and rental period.
+- **Button:** `CHECK EQUIPMENT AVAILABILITY` → reservation link
 
 ---
 
 ## 14. Featured Work / Content Section — Who We Serve
 
-No client case studies, project photography, or testimonials were supplied, and none are fabricated here (no invented client names, quotes, or job claims). Instead:
+No client case studies, project photography, or testimonials were supplied, and none are fabricated here. A short "Who We Serve" section (home page, between the fleet teaser and final CTA) covers the industries implied by the equipment's own "Ideal For" lists in §13, legitimately derived rather than invented:
 
-- **Eyebrow:** WHO WE SERVE
-- **H2:** Built For the Work You Do.
-- **Three industry tiles:**
-  - **Commercial Construction** — Lifting, staging, and material handling for active build sites.
-  - **Industrial & Facilities** — Equipment that keeps plants, warehouses, and facilities operating without interruption.
-  - **Site Logistics & Transport** — Equipment delivered and picked up without coordinating a separate hauler.
-
-*(Swap in real project photography or client references here once available — layout is built to accept that upgrade.)*
+- **Commercial Construction** — Steel erection, framing, roofing, and material placement at height.
+- **Industrial & Facilities** — Mechanical installation, structural work, and facility maintenance.
+- **Hauling & Logistics** — Equipment transportation and construction logistics, powered by our own Peterbilt fleet.
 
 ---
 
-## 15. Final CTA Section
+## 15. Final CTA Section (Home Page)
 
 Scene 3 ("On the Move") full-bleed background, darkened grade, reversed type.
 
-- **H2 (huge, kinetic line reveal):** Ready to Get the Job Moving?
-- **Body:** Tell us what the job needs — the equipment, the timeline, the site. We'll handle getting it there.
-- **Primary Button:** `GET A QUOTE` → placeholder contact destination (§16)
-- **Secondary micro-link:** phone/email placeholder, see footer
+- **H2:** Ready to Get to Work?
+- **Body:** Tell us what the job demands. We'll help you secure the right equipment, the right rental terms, and the support you need to keep moving.
+- **Primary Button:** `RENT EQUIPMENT` → reservation link
 
 ---
 
 ## 16. Footer
 
-Iron Blue background, off-white type, minimal and structural.
+Iron Blue background, warm white type.
 
 - **Column 1:** Equip & Haul logo/wordmark + tagline: "Equipment That Works as Hard as You Do."
-- **Column 2 — Company:** Fleet & Services · Get a Quote
-- **Column 3 — Services:** Aerial & Lift Equipment · Material Handling · Hauling & Transport
-- **Column 4 — Contact:** `[Add phone number]` · `[Add email address]` · `[Add service area]` — placeholders only, no fabricated contact details inserted. **No reservation/quote system URL was supplied for this project** (the prior build for a different client had a live external booking link; this one does not) — every "Get a Quote" button in this build points to a placeholder `/fleet#contact` anchor until the client supplies either a real contact form target, a phone/email, or a third-party booking URL.
-- **Bottom bar:** © [Year] Equip & Haul Equipment Leasing. All rights reserved. · hairline rule in `#FFD400` above the bottom bar.
+- **Column 2 — Company:** Fleet & Equipment · Rent Equipment
+- **Column 3 — Fleet:** links to all 7 unit pages
+- **Column 4 — Contact:** `[Add phone number]` · `[Add email address]` · `[Add service area]` — no contact details were supplied, so these stay clearly marked placeholders rather than fabricated; the reservation link itself is real and live everywhere else.
+- **Bottom bar:** © [Year] Equip & Haul Equipment Leasing. All rights reserved. · hairline rule in `#FFD400`.
 
 ---
 
 ## 17. Complete Visual Style Guide
 
-**Grid:** 12-column, max-width 1440px container, 24px gutters desktop / 16px mobile. Sections deliberately break the grid (type bleeding off-edge) as a brutalist signature, always intentionally.
+**Grid:** 12-column, max-width 1440px container, 24px gutters desktop / 16px mobile. **Heavy grid lines** (per the client's own direction) run between major sections and columns at a visibly thicker weight than a typical hairline — `#95A5A6` at higher opacity and 2px rather than 1px where the grid is meant to be felt, not just implied.
 
 **Spacing scale (rem, 8px base):** 0.5 · 1 · 1.5 · 2 · 3 · 4 · 6 · 8 · 12 · 16 — section vertical padding never below `6rem` desktop / `3rem` mobile.
 
-**Corners & borders:** 0px radius everywhere except the primary CTA button (near-imperceptible 2px). Hairlines at 1px, `#95A5A6` at 30–40% opacity for dividers, `#FFD400` at full opacity for active/hover states.
+**Corners & borders:** 0px radius everywhere except the primary CTA button (near-imperceptible 2px).
 
 **Buttons:**
-- Primary: solid `#FFD400` fill, `#2C3E50` text (dark text on yellow for contrast and legibility), Open Sans Bold, uppercase, letter-spaced; hover inverts to `#2C3E50` fill with `#FFD400` border+text
-- Secondary/ghost: transparent, 1px `#F5F5F5` or `#2C3E50` border depending on section, fills solid on hover
+- Primary: solid `#FFD400` fill, `#2C3E50` text (dark-on-yellow for contrast), Open Sans Bold, uppercase, letter-spaced; hover inverts to `#2C3E50` fill with `#FFD400` border+text
+- Secondary/ghost: transparent, 1px border in context color, fills solid on hover
 
-**Imagery/placeholder system:** since no commissioned photography exists yet, every image slot uses a **technical-schematic placeholder panel** — duotone gradient (Iron Blue family), 6–10% grain, corner frame brackets, a faint oversized category glyph, and a small spec-tag caption — sized to the exact aspect ratio real photography drops into later with zero rework. This is a deliberate design system, not a broken-image stand-in.
+**Imagery/placeholder system:** every image slot uses a technical-schematic placeholder panel (duotone gradient, grain, corner frame brackets, a faint category glyph, spec-tag caption) sized to the exact aspect ratio real photography drops into — each unit's panel pre-labeled with that unit's own suggested-shot brief from §13 as its caption, so the placeholder itself tells whoever's taking photos exactly what to shoot.
 
-**Iconography:** minimal line icons only where functional (chevrons, arrows, menu/close). Everything else is typographic or photographic.
+**Iconography:** minimal line icons only where functional. Everything else is typographic or photographic.
 
 ---
 
 ## 18. Typography
 
-- **Display / Headers:** **Trade Gothic Bold** (client-specified). No free web-embeddable license exists for Trade Gothic — if a licensed webfont file becomes available, it drops into the single `--font-display` variable. **Production stand-in: Oswald (700)**, the closest freely-licensed geometric-condensed match.
-- **Body / UI:** **Open Sans** (400/600/700) for all body copy, nav, buttons, and stat labels.
+- **Display / Headers:** **Trade Gothic Bold** (client-specified). No free web-embeddable license exists; **Oswald (700)** is the production stand-in, swappable via one `--font-display` variable if a licensed webfont is obtained.
+- **Body / UI:** **Open Sans** (400/600/700).
 
 **Type scale (desktop, fluid via `clamp()`):**
-| Role | Size | Weight | Notes |
-|---|---|---|---|
-| Hero H1 | `clamp(3rem, 9vw, 8.5rem)` | 700 | tight leading (0.92) |
-| Section H2 | `clamp(2.25rem, 6vw, 5rem)` | 700 | |
-| Pillar numerals | `clamp(3rem, 5vw, 6rem)` | 700 | `#FFD400` |
-| Body / lede | `1.125rem–1.375rem` | 400 | Open Sans, 1.6 line-height, max 65ch |
-| Eyebrow / label | `0.8125rem` | 600 | uppercase, 0.15em tracking |
-| Button label | `0.9375rem` | 700 | uppercase, 0.08em tracking |
+| Role | Size | Weight |
+|---|---|---|
+| Hero H1 | `clamp(3rem, 9vw, 8.5rem)` | 700 |
+| Section H2 | `clamp(2.25rem, 6vw, 5rem)` | 700 |
+| Pillar numerals | `clamp(3rem, 5vw, 6rem)` | 700, `#FFD400` |
+| Body / lede | `1.125rem–1.375rem` | 400, 1.6 line-height, max 65ch |
+| Eyebrow / label | `0.8125rem` | 600, uppercase, 0.15em tracking |
+| Button label | `0.9375rem` | 700, uppercase, 0.08em tracking |
 
-All headline reveals use a mask/clip-path wipe (not opacity fades) so type feels physically uncovered.
+Headline reveals use a mask/clip-path wipe (not opacity fades) so type feels physically uncovered — oversized and condensed, per the client's own direction.
 
 ---
 
 ## 19. Animation Direction
 
-- **Kinetic type:** headlines split into lines/words, revealed with a `clip-path` wipe + Y-translate, staggered per line, triggered on scroll-into-view.
-- **Section transitions:** cinematic cross-fades between dark and light sections (brief Iron Blue bridge frame) rather than hard cuts.
+- **Kinetic type:** headlines split into lines/words, revealed with a `clip-path` wipe + Y-translate, staggered per line, on scroll-into-view.
+- **Section transitions:** cinematic cross-fades between dark and light sections rather than hard cuts.
 - **Numerals (stats strip):** count-up tweens, eased, 1.2–1.8s duration.
-- **Parallax:** background layers move at 0.8–0.9x scroll speed relative to foreground type, capped and disabled under `prefers-reduced-motion`.
-- **Micro-interactions:** button hover = 150ms color invert; fleet/category tile hover = image scale 1.04 + duotone-to-color crossfade (the one moment full color bleeds through, rewarding interaction).
+- **Parallax:** background layers move at 0.8–0.9x scroll speed, capped and disabled under `prefers-reduced-motion`.
+- **Micro-interactions:** button hover = 150ms color invert; unit-tile hover = image scale 1.04 + duotone-to-color crossfade.
 
 ---
 
 ## 20. Interaction Design
 
-- **Cursor:** default system cursor — premium-industrial, not playful-startup.
-- **Primary CTA** present at minimum in: nav (persistent), hero, mission section, fleet section, final CTA, footer — never more than one viewport away.
-- **Category tiles:** entire tile is a click target, `cursor: pointer`, hover reveals border + "Learn More."
-- **Forms:** none required for MVP until a real contact/quote mechanism is supplied (§16) — the CTA destination is a placeholder, clearly marked, not a dead end disguised as a working form.
-- **Focus states:** visible 2px `#FFD400` outline on all interactive elements for keyboard navigation.
+- **Cursor:** default system cursor.
+- **Primary CTA** present in: nav (persistent), hero, mission section, fleet teaser, final CTA, footer, and every unit page — never more than one viewport away.
+- **Unit tiles:** entire tile is a click target, hover reveals border + "View Specs."
+- **Forms:** none required — the reservation system is fully offloaded to `reserve.loadmaxrentals.com`.
+- **Focus states:** visible 2px `#FFD400` outline on all interactive elements.
 
 ---
 
 ## 21. Scroll Behavior
 
-- **Smooth scroll:** lightweight inertia-scroll (Lenis) for a weighted, cinematic feel.
-- **No hard scroll-snap** on the home page; the Fleet page may use soft scroll-snap per row for a catalog feel.
-- **Scroll-triggered reveals** on every major section (kinetic type, stat count-ups, image duotone-to-color, pillar stagger-in).
-- **Progress indicator:** thin 2px `#FFD400` bar fixed to the viewport top, fills across full page scroll.
+- **Smooth scroll:** Lenis inertia scroll for a weighted, cinematic feel.
+- **No hard scroll-snap** on the home page; the Fleet page may use soft scroll-snap per row.
+- **Scroll-triggered reveals** on every major section.
+- **Progress indicator:** thin 2px `#FFD400` bar fixed to the viewport top.
 - **Performance guardrail:** background videos pause when scrolled out of viewport.
 
 ---
 
 ## 22. Mobile Behavior
 
-- **Video → poster fallback:** respects `prefers-reduced-motion` and `save-data`; mobile still gets the cinematic look without the payload cost.
-- **Type scale collapse:** `clamp()` scale compresses headlines naturally; hero H1 stays comfortable on a 375px viewport.
-- **Layout:** multi-column sections (pillars, mission split, footer columns) stack to single-column; fleet grid goes 1-up then 2-up.
-- **Sticky mobile CTA:** persistent slim "Get a Quote" bar pinned to the bottom of the viewport on the Fleet page and after the hero on the home page.
-- **Touch targets:** minimum 44×44px on every button/link.
-- **Reduced motion:** kinetic reveals fall back to opacity fades; parallax and count-ups disabled under `prefers-reduced-motion: reduce`.
+- **Video → poster fallback**, respecting `prefers-reduced-motion` and `save-data`.
+- **Type scale collapse** via `clamp()`.
+- **Layout:** multi-column sections stack to single-column; fleet grid goes 1-up then 2-up.
+- **Sticky mobile CTA:** persistent "Rent Equipment" bar pinned to the bottom of the viewport on every unit page and after the home hero.
+- **Touch targets:** minimum 44×44px.
+- **Reduced motion:** kinetic reveals fall back to opacity fades; parallax/count-ups disabled.
 
 ---
 
-## 23. Technical Implementation
+## 23. Technical Implementation — No-Code WordPress Architecture
 
-**This build is WordPress-native from the start — not a static site converted to WordPress afterward.** The client has said plainly they are not a coder and needs to be able to change content themselves, so "can a non-coder edit this in wp-admin" is a hard requirement on every section of every page, not a nice-to-have.
+**This is the core engineering decision in this plan.** The client is not a coder and must be able to edit every page themselves. That rules out hardcoding copy into PHP templates (fine for a developer hand-off, not fine here) and rules out a page-builder plugin (another thing to license, update, and for a non-coder to learn). The solution used throughout this build:
 
-**Stack:** A single custom WordPress theme (no page-builder plugin, no ACF dependency — kept to core WordPress so there's nothing extra to license, update, or break). Modern CSS (custom properties, `clamp()`, Grid/Flexbox) + vanilla JS, plus GSAP + ScrollTrigger (kinetic type, reveals, count-ups) and Lenis (smooth scroll) via CDN — identical motion layer to the design direction in §19–21, just served from PHP templates instead of static HTML.
+**One generic, reusable template per page type — content lives in fields, not markup.** There are only three templates in the whole theme: **Home**, **Fleet & Equipment**, and **Equipment Unit**. The same "Equipment Unit" template renders all 7 machines — each one is a separate WordPress Page using that template, and the specific headline, body paragraphs, four specs, "Ideal For" list, photo, and button text for *that* machine live in labeled fields on *that* page's edit screen. To add an 8th unit, the client creates one new page, picks "Equipment Unit" from the Template dropdown, fills in the fields, and publishes — no code, ever.
 
-**Every page is an ordinary WordPress Page with a Page Template assigned** (a dropdown in the normal "Page Attributes" panel) — "Home," "Fleet & Services," etc. Creating a new page, renaming it, or reordering the menu is something the client does entirely in wp-admin, the same as any WordPress site.
+**Every field is a plain input in a meta box** on the page editor screen — a text box labeled "Hero Headline," a text box labeled "Spec 1 Value," etc. — built on core WordPress (no plugin dependency). This is the same mechanism already proven for photos (a "Choose Image" button using the native WordPress media picker); here it's extended to cover every piece of text too, so *nothing* on any page requires touching a file.
 
-**How content gets edited without code — the core mechanism of this build:**
+**The site ships pre-loaded with the real content above — not an empty shell.** Because this plan already contains the client's actual copy for every section and all 7 units, the theme auto-creates the Home page, the Fleet & Equipment page, and all 7 unit pages on activation, with every field already filled in exactly as written in §8–13. The client installs the theme and the real site is live immediately; editing is only needed when they want to *change* something, never to finish it.
 
-The cinematic layout (huge hero type, the three-pillar grid, the stats strip, etc.) has fixed *design slots* — a hero headline isn't free-form paragraph text, it's one specific huge line of type in one specific place. That rules out just dumping everything into the normal WordPress block editor (there's no reliable way to map arbitrary block content onto "this exact word becomes the 6rem kinetic headline"). Instead, each page template exposes its editable pieces — headline, subhead, button label, each pillar's heading/body, each stat's number/label, and so on — as **plain labeled text fields in a meta box** on that page's edit screen in wp-admin. This is the exact same pattern already proven for images on a prior project (a "Site Images" admin screen with Choose Image buttons, built on core WordPress with zero plugins) — just extended to text. To the client, editing a headline looks like: open the page, find the field labeled "Hero Headline," change the text, click Update. No HTML, no shortcodes, no file editing, ever.
-
-Photos follow the identical no-code pattern already validated on the prior build: each content photo is a normal **Featured Image** (or, for slots not tied to one specific page, a small admin **Site Images** screen using the standard WordPress media picker) — "Choose Image," pick or upload a photo, Update. Any slot left empty automatically shows the designed placeholder panel instead of a broken image, so the site never looks unfinished while photos are still being gathered.
+**Stack:** Custom WordPress theme, core WordPress only (no ACF, no page builder). Modern CSS (custom properties, `clamp()`, Grid/Flexbox) + vanilla JS, plus GSAP + ScrollTrigger (kinetic type, reveals, count-ups) and Lenis (smooth scroll) via CDN.
 
 **File structure:**
 ```
 /wordpress-theme/equip-haul/
-  style.css                   (theme header + required WP metadata)
-  functions.php                (enqueue assets, editable-field + image helpers, Site Images admin screen)
-  header.php / footer.php      (shared chrome)
-  page-home.php                 (Template Name: Home)
-  page-fleet.php                 (Template Name: Fleet & Services)
-  index.php                    (fallback template, required by WordPress)
-  assets/css/main.css           (design system — same system described in §4, §17–19)
-  assets/js/main.js             (Lenis + GSAP init, nav, shared behavior)
-  assets/js/kinetic-type.js     (line/word splitter + reveal controller)
+  style.css                      (theme header + required WP metadata)
+  functions.php                   (field/meta-box helpers, image helper, activation seeding)
+  header.php / footer.php         (shared chrome)
+  page-home.php                    (Template Name: Home)
+  page-fleet.php                    (Template Name: Fleet & Equipment)
+  page-equipment-unit.php           (Template Name: Equipment Unit — reused for all 7 machines)
+  index.php                       (required WordPress fallback)
+  assets/css/main.css              (design system — §4, §17–19)
+  assets/js/main.js                (Lenis + GSAP init, nav, shared behavior)
+  assets/js/kinetic-type.js        (line/word splitter + reveal controller)
   assets/js/stats-counter.js
-  assets/js/admin-fields.js     (media-picker JS for the Site Images / photo fields)
-  WP-INSTALL.md                 (plain-language setup + "how to edit this" guide)
+  assets/js/admin-fields.js         (media-picker JS for photo fields)
+  WP-INSTALL.md                    (plain-language setup + "how to edit this" guide)
 /BUILD-PLAN.md
 ```
 
-**Performance targets:** Lighthouse Performance ≥ 90 mobile, LCP < 2.5s, CLS < 0.05 (all media has explicit `aspect-ratio` reserved).
+**Performance targets:** Lighthouse Performance ≥ 90 mobile, LCP < 2.5s, CLS < 0.05.
 
-**SEO basics:** unique `<title>`/meta description per page (editable the same no-code way — a field, not a code edit), semantic heading hierarchy, descriptive `alt` text, internal linking between home ↔ fleet ↔ footer.
+**SEO:** unique `<title>`/meta description per page (an editable field, not a code edit), semantic heading hierarchy, the supplied alt text per unit (§13), internal linking between home ↔ fleet ↔ units ↔ footer.
 
-**Accessibility:** WCAG AA contrast on all text-over-image overlays (dark scrim behind hero/CTA type), full keyboard navigability, `prefers-reduced-motion` support, semantic landmarks.
+**Accessibility:** WCAG AA contrast on all text-over-image overlays, full keyboard navigability, `prefers-reduced-motion` support, semantic landmarks.
 
-**Analytics/tracking:** hook point left in `main.js` for a single analytics snippet and outbound/CTA click tracking — client to supply tracking ID before launch.
+**Analytics/tracking:** hook point left in `main.js` for a single analytics snippet and outbound/CTA click tracking — client to supply tracking ID.
 
-**Requirements:** WordPress 6.0+, PHP 7.4+, no plugins required, no database setup beyond what WordPress itself needs.
+**Requirements:** WordPress 6.0+, PHP 7.4+, no plugins required.
 
 ---
 
 ## Build Sequence (once approved)
 
-1. Theme scaffold: `style.css`, `functions.php`, `header.php`, `footer.php`, the editable-field helper functions, and the Site Images admin screen
-2. Design system CSS: variables, typography scale, grid, button/component base, grain overlay, placeholder-panel system
-3. Home page template, built around labeled editable fields for every section in §8–12
-4. Fleet & Services page template, built around editable category-tile fields per §13
-5. Motion layer: Lenis smooth scroll, GSAP kinetic type, scroll-triggered reveals, stats count-up
-6. Responsive pass (mobile/tablet breakpoints, sticky mobile CTA)
-7. Accessibility + performance pass, then execute every template through a stub test harness (not just a syntax check) to confirm the editable fields actually render, before it ever touches a real WordPress install
-8. `WP-INSTALL.md`: plain-language setup steps and a "how to edit each section" guide, written for a non-coder
-9. Higgsfield Seedance 2.0 generation for the three cinematic scenes, once commissioned — graded and integrated with poster fallback
-10. Final QA, commit, push, zip the theme for upload
+1. Theme scaffold: `style.css`, `functions.php` (field/meta-box helpers, image helper), `header.php`, `footer.php`
+2. Design system CSS: variables, typography scale, heavy-grid system, button/component base, grain overlay, placeholder-panel system
+3. `page-home.php` — field-driven, built around §8–12 and §13's teaser/§14
+4. `page-fleet.php` — field-driven index + §13's closing CTA
+5. `page-equipment-unit.php` — the single reusable template covering every field in §13's per-unit structure
+6. Activation seeding: auto-create Home, Fleet, and all 7 unit pages with the real copy from this plan pre-filled
+7. Motion layer: Lenis smooth scroll, GSAP kinetic type, scroll-triggered reveals, stats count-up
+8. Responsive pass (mobile/tablet breakpoints, sticky mobile CTA)
+9. Accessibility + performance pass, then execute every template through a stub test harness (not just a syntax check) to confirm every field renders and the activation seeding works, before it ever touches a real WordPress install
+10. `WP-INSTALL.md`: plain-language setup steps and a "how to edit each section" guide, written for a non-coder
+11. Higgsfield Seedance 2.0 generation for the three cinematic scenes, once commissioned
+12. Final QA, commit, push, zip the theme for upload
 
 ---
 
 ## What This Build Replaces
 
-Per your direction, this repository and branch previously held a complete build (BUILD-PLAN.md, home page, 6 per-unit equipment pages, and a WordPress theme) for a different client, Denson Commercial Equipment Leasing. Approving this plan means that entire prior build — all HTML/CSS/JS and the WordPress theme folder — is removed and replaced with the Equip & Haul site described above. Nothing is salvaged or merged between the two; if any part of the Denson build is still needed, retrieve it from this branch's git history before approving.
+This plan supersedes the earlier, partial-copy draft of this same Equip & Haul project written earlier in this session (which used placeholder stats, generic service categories instead of named units, and a placeholder CTA destination). It also remains, per earlier direction, a full replacement of this repository's original build for a different client, Denson Commercial Equipment Leasing — that prior HTML/CSS/JS and WordPress theme is removed once this plan is approved and built, retrievable from git history if ever needed.
