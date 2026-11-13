@@ -20,7 +20,7 @@ Most equipment rental sites read like parts catalogs: dense spec tables, stock p
 **Site scope for this build:**
 1. Home page (full cinematic scroll experience)
 2. Fleet & Equipment page (index of all 7 units)
-3. Seven individual equipment pages — JLG 660SJ, JLG 1043, JLG SkyTrak 10054, JLG 1055, JLG 600AJ, JLG 800AJ, Peterbilt 680 — all built from **one single reusable page template** (see §23), not seven hand-coded pages
+3. Seven individual equipment pages — JLG 660SJ, JLG 1043, JLG SkyTrak 10054, JLG 1055, JLG 600AJ, JLG 800AJ, Peterbilt 680 — each with its own named Page Template (selectable by that machine's name, not a generic label) but all sharing one render file behind the scenes (see §23), so there's no copy-pasted markup to fall out of sync
 4. Shared header / footer / CTA system
 
 **Non-coder editing requirement (drives every technical decision in this plan):** the client has been explicit, twice, that they are not a coder and must be able to edit this themselves. Every page in this build is an ordinary WordPress Page with a template assigned, and every headline, paragraph, spec, bullet, and photo is a plain labeled field in the page editor — never HTML, never a file. See §23 for exactly how, including how the real copy below ships pre-loaded so there's nothing to re-type on day one.
@@ -117,16 +117,16 @@ A Peterbilt 680 hauling a loaded trailer down a jobsite access road at golden ho
 ```
 /                                Home — Page Template: "Home"
 /fleet                           Fleet & Equipment index — Page Template: "Fleet & Equipment"
-/fleet/jlg-660sj                 Page Template: "Equipment Unit" (reused for all 7)
-/fleet/jlg-1043                  Page Template: "Equipment Unit"
-/fleet/jlg-skytrak-10054         Page Template: "Equipment Unit"
-/fleet/jlg-1055                  Page Template: "Equipment Unit"
-/fleet/jlg-600aj                 Page Template: "Equipment Unit"
-/fleet/jlg-800aj                 Page Template: "Equipment Unit"
-/fleet/peterbilt-680             Page Template: "Equipment Unit"
+/fleet/jlg-660sj                 Page Template: "JLG 660SJ"
+/fleet/jlg-1043                  Page Template: "JLG 1043"
+/fleet/jlg-skytrak-10054         Page Template: "JLG SkyTrak 10054"
+/fleet/jlg-1055                  Page Template: "JLG 1055"
+/fleet/jlg-600aj                 Page Template: "JLG 600AJ"
+/fleet/jlg-800aj                 Page Template: "JLG 800AJ"
+/fleet/peterbilt-680             Page Template: "Peterbilt 680"
 ```
 
-Every one of these is an ordinary WordPress Page. The 7 unit pages all use the **same page template** — there is one "Equipment Unit" template in the theme, and each page supplies its own headline, body copy, specs, "Ideal For" list, photo, and button text through labeled fields. Adding an 8th unit later means creating one new page with that template and filling in the fields — never writing code. See §23.
+Every one of these is an ordinary WordPress Page. Each of the 7 unit pages has **its own named template** — the Template dropdown shows that exact machine's name, not a generic label, so picking the right one is never a guess. Behind the scenes all 7 templates are thin files that share one render file, so there's a single place to fix a bug or change the layout. Each page supplies its own headline, body copy, specs, "Ideal For" list, photo, and button text through labeled fields — never by editing the template file. Adding an 8th unit means a developer duplicates one of the 7 template files and renames it (the one step that isn't pure no-code); filling in its content afterward is the same field-based process as the other 7. See §23.
 
 **Global navigation:** Logo (left) · Fleet & Equipment (link to /fleet) · Rent Equipment button (right, always `#FFD400`, always the live reservation link). Minimal by design.
 
@@ -224,7 +224,7 @@ No founder history was supplied, so this is written as a philosophy statement �
 
 ### The seven units
 
-Each unit below becomes one Equipment Unit page (§7, §23) — headline, two body paragraphs, four specs, an "Ideal For" list, a photo brief, alt text, and a `RENT THE [MODEL]` button, all as individually editable fields.
+Each unit below becomes one page using that machine's own named template (§7, §23) — headline, two body paragraphs, four specs, an "Ideal For" list, a photo brief, alt text, and a `RENT THE [MODEL]` button, all as individually editable fields.
 
 > **Copy-editing note:** the source brief included inline reference links (e.g. "[JLG]," "[SkyTrak]") after several spec sentences — these read as citation artifacts from drafting, not intentional on-page links, and would look broken on a finished $10K site, so they're removed from the copy below. The spec figures themselves are kept as supplied.
 >
@@ -429,7 +429,7 @@ Headline reveals use a mask/clip-path wipe (not opacity fades) so type feels phy
 
 **This is the core engineering decision in this plan.** The client is not a coder and must be able to edit every page themselves. That rules out hardcoding copy into PHP templates (fine for a developer hand-off, not fine here) and rules out a page-builder plugin (another thing to license, update, and for a non-coder to learn). The solution used throughout this build:
 
-**One generic, reusable template per page type — content lives in fields, not markup.** There are only three templates in the whole theme: **Home**, **Fleet & Equipment**, and **Equipment Unit**. The same "Equipment Unit" template renders all 7 machines — each one is a separate WordPress Page using that template, and the specific headline, body paragraphs, four specs, "Ideal For" list, photo, and button text for *that* machine live in labeled fields on *that* page's edit screen. To add an 8th unit, the client creates one new page, picks "Equipment Unit" from the Template dropdown, fills in the fields, and publishes — no code, ever.
+**Content lives in fields, not markup — and every machine gets its own named template.** The theme has 9 templates: **Home**, **Fleet & Equipment**, and one per machine (**JLG 660SJ**, **JLG 1043**, **JLG SkyTrak 10054**, **JLG 1055**, **JLG 600AJ**, **JLG 800AJ**, **Peterbilt 680**) — so the Template dropdown in Page Attributes always shows a name the client recognizes, never a generic placeholder. All 7 unit templates are thin files that `require` one shared render file (`template-parts/equipment-unit-render.php`), so the layout, markup, and field list exist in exactly one place — a bug fix or design change there applies to all 7 instantly, with zero risk of the 7 pages drifting out of sync the way 7 hand-copied files would. Each page's own headline, body paragraphs, specs, "Ideal For" list, photo, and button text live in labeled fields on that page's edit screen regardless of which of the 7 templates it uses. Adding an 8th unit means a developer duplicates one `page-*.php` file and changes its `Template Name:` comment (one small code step); every other part of populating that new page — all its content — is the same no-code field-filling process as the original 7.
 
 **Every field is a plain input in a meta box** on the page editor screen — a text box labeled "Hero Headline," a text box labeled "Spec 1 Value," etc. — built on core WordPress (no plugin dependency). This is the same mechanism already proven for photos (a "Choose Image" button using the native WordPress media picker); here it's extended to cover every piece of text too, so *nothing* on any page requires touching a file.
 
@@ -447,13 +447,20 @@ Headline reveals use a mask/clip-path wipe (not opacity fades) so type feels phy
     header.php / footer.php         (shared chrome)
     page-home.php                    (Template Name: Home)
     page-fleet.php                    (Template Name: Fleet & Equipment)
-    page-equipment-unit.php           (Template Name: Equipment Unit — reused for all 7 machines)
+    page-jlg-660sj.php                (Template Name: JLG 660SJ)
+    page-jlg-1043.php                 (Template Name: JLG 1043)
+    page-jlg-skytrak-10054.php        (Template Name: JLG SkyTrak 10054)
+    page-jlg-1055.php                 (Template Name: JLG 1055)
+    page-jlg-600aj.php                (Template Name: JLG 600AJ)
+    page-jlg-800aj.php                (Template Name: JLG 800AJ)
+    page-peterbilt-680.php            (Template Name: Peterbilt 680)
+    template-parts/equipment-unit-render.php  (shared render logic behind all 7 unit templates)
     index.php                       (required WordPress fallback)
     assets/css/main.css              (design system — §4, §17–19)
     assets/js/main.js                (Lenis + GSAP init, nav, shared behavior)
     assets/js/kinetic-type.js        (line/word splitter + reveal controller)
     assets/js/stats-counter.js
-    assets/js/admin-fields.js         (media-picker JS for photo fields)
+    assets/js/admin-images.js         (media-picker JS for Site Images)
     WP-INSTALL.md                    (plain-language setup + "how to edit this" guide)
 ```
 
@@ -475,7 +482,7 @@ Headline reveals use a mask/clip-path wipe (not opacity fades) so type feels phy
 2. Design system CSS: variables, typography scale, heavy-grid system, button/component base, grain overlay, placeholder-panel system
 3. `page-home.php` — field-driven, built around §8–12 and §13's teaser/§14
 4. `page-fleet.php` — field-driven index + §13's closing CTA
-5. `page-equipment-unit.php` — the single reusable template covering every field in §13's per-unit structure
+5. `template-parts/equipment-unit-render.php` (the shared logic) plus the 7 named `page-*.php` wrapper templates covering every field in §13's per-unit structure
 6. Activation seeding: auto-create Home, Fleet, and all 7 unit pages with the real copy from this plan pre-filled
 7. Motion layer: Lenis smooth scroll, GSAP kinetic type, scroll-triggered reveals, stats count-up
 8. Responsive pass (mobile/tablet breakpoints, sticky mobile CTA)

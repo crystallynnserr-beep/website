@@ -1,0 +1,13 @@
+/*
+Theme Name: Equip & Haul Equipment Leasing
+Description: Custom industrial-editorial theme for Equip & Haul Equipment Leasing, built from /equip-haul/BUILD-PLAN.md. Every page is a Page Template with its content exposed as plain no-code fields.
+Author: Equip & Haul Equipment Leasing
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+Text Domain: equip-haul
+*/
+
+/* This file intentionally holds only the required WordPress theme header.
+   The full design system lives in /assets/css/main.css and is enqueued
+   from functions.php. */
