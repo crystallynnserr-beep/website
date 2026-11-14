@@ -642,8 +642,9 @@ function eh_render_images_page() {
    Creates the Home page, the Fleet & Equipment page, and all 7 unit
    pages — with every field already filled in from BUILD-PLAN.md — the
    first time this theme is activated, so the real site is live
-   immediately. Runs once (guarded by the eh_seeded option); editing
-   afterward never re-runs this or overwrites a client's changes.
+   immediately. Safe to run on every activation: each page is only
+   created if nothing already exists at its slug, so a page already on
+   the site (and any edits made to it) is never touched or duplicated.
    ========================================================================= */
 
 function eh_seed_fields( $post_id, $data ) {
@@ -665,9 +666,13 @@ function eh_seed_find_page( $slug ) {
 }
 
 function eh_seed_content() {
-	if ( get_option( 'eh_seeded' ) ) {
-		return;
-	}
+	// No blanket "already seeded, skip everything" guard: that would
+	// block a page added in a later theme update (like Contact) from
+	// ever being created on a site that finished seeding under an
+	// older version. Every page below is individually guarded by
+	// eh_seed_find_page() instead, so this is always safe to run on
+	// every activation — existing pages and their edits are never
+	// touched, and only a genuinely missing page gets created.
 
 	// ---------- Home ----------
 	$home_id = eh_seed_find_page( 'home' );
@@ -933,7 +938,5 @@ function eh_seed_content() {
 	// ---------- Clean URLs (/fleet/jlg-660sj/ etc.) ----------
 	update_option( 'permalink_structure', '/%postname%/' );
 	flush_rewrite_rules( false );
-
-	update_option( 'eh_seeded', 1 );
 }
 add_action( 'after_switch_theme', 'eh_seed_content' );

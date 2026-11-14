@@ -38,10 +38,15 @@ editing content afterward never re-runs this or overwrites your changes.
 
 **If you've already been testing this theme before this update:** your
 site may have a handful of duplicate pages (e.g. two "JLG 1043" pages)
-from an earlier activation. This update makes that impossible going
-forward, but it can't undo duplicates that already exist. See the
-"Duplicate pages?" box in section 3 below to clean those up — it takes
-under a minute.
+from an earlier activation, and a page added in this update (like
+Contact) may have 404'd because your site had already finished its
+one-time setup under an older version. Re-uploading and reactivating
+this version fixes the 404 automatically — any page that's genuinely
+missing gets created, and every page you already have (plus anything
+you've edited) is left exactly as it is. See the "Duplicate pages?" box
+in section 3 below to clean up any duplicates already on the site —
+that one part needs a minute of your own clicking, since it's real data
+nothing can safely delete automatically.
 
 ## 3. How to edit anything — no code, ever
 
