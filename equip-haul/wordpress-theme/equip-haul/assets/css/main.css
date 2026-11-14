@@ -379,10 +379,16 @@ a.media-panel:hover .media-panel__glyph{ color:rgba(255,212,0,.16); }
 @media (max-width:900px){ .story{ grid-template-columns:1fr; } .story__media{ order:-1; } }
 
 /* ---------- Fleet grid (asymmetric editorial) ---------- */
-.fleet-grid{ display:grid; grid-template-columns:repeat(6, 1fr); grid-auto-rows:minmax(160px,auto); gap:var(--gutter); margin-top:var(--space-5); }
-.fleet-tile{ grid-column:span 3; grid-row:span 2; display:block; position:relative; text-decoration:none; overflow:hidden; }
-.fleet-tile--hero{ grid-column:span 6; grid-row:span 3; }
-.fleet-tile--plain{ grid-column:auto; grid-row:auto; aspect-ratio:4/3; }
+/* Tile shape is square, not landscape: these are catalog photos (near-
+   square once trimmed to the machine, see photos/README.md), not wide
+   environmental photography. A landscape tile forced object-fit:cover
+   to crop off the forks or basket to fill the frame; a square tile
+   needs only a light crop to fill edge-to-edge instead of showing the
+   whole machine letterboxed on a grey backdrop. */
+.fleet-grid{ display:grid; grid-template-columns:repeat(6, 1fr); gap:var(--gutter); margin-top:var(--space-5); }
+.fleet-tile{ grid-column:span 3; aspect-ratio:1/1; display:block; position:relative; text-decoration:none; overflow:hidden; }
+.fleet-tile--hero{ grid-column:span 6; aspect-ratio:2/1; }
+.fleet-tile--plain{ grid-column:auto; grid-row:auto; aspect-ratio:1/1; }
 .fleet-tile .media-panel{ position:absolute; inset:0; aspect-ratio:auto; }
 .fleet-tile__body{
   position:absolute; inset:0; z-index:2; padding:var(--space-3);
@@ -401,12 +407,12 @@ a.media-panel:hover .media-panel__glyph{ color:rgba(255,212,0,.16); }
 
 @media (max-width:900px){
   .fleet-grid{ grid-template-columns:repeat(2,1fr); }
-  .fleet-tile{ grid-column:span 2; grid-row:span 2; }
-  .fleet-tile--hero{ grid-column:span 2; }
+  .fleet-tile{ grid-column:span 2; }
+  .fleet-tile--hero{ grid-column:span 2; aspect-ratio:4/3; }
 }
 @media (max-width:560px){
   .fleet-grid{ grid-template-columns:1fr; }
-  .fleet-tile, .fleet-tile--hero{ grid-column:span 1; }
+  .fleet-tile, .fleet-tile--hero{ grid-column:span 1; aspect-ratio:1/1; }
 }
 
 .section-footer-cta{ margin-top:var(--space-5); display:flex; justify-content:center; }
