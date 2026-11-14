@@ -249,11 +249,17 @@ input,textarea{ font:inherit; }
   position:absolute; left:var(--space-3); bottom:var(--space-3); z-index:2;
   display:flex; align-items:center; gap:.75em; font-family:var(--font-body); font-weight:700;
   font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; color:var(--eh-white);
+  /* Dark backdrop chip so the label stays legible over a real photo's own
+     background too, not just the schematic placeholder it was designed for. */
+  background:rgba(28,40,51,.72);
+  padding:.4em .7em;
 }
-.media-panel__tag::before{ content:""; width:8px; height:8px; background:var(--eh-yellow); }
+.media-panel__tag::before{ content:""; width:8px; height:8px; background:var(--eh-yellow); flex-shrink:0; }
 .media-panel__index{
   position:absolute; right:var(--space-3); top:var(--space-3); z-index:2;
-  font-family:var(--font-display); font-size:.8125rem; letter-spacing:.1em; color:rgba(245,245,245,.55);
+  font-family:var(--font-display); font-size:.8125rem; letter-spacing:.1em; color:rgba(245,245,245,.85);
+  background:rgba(28,40,51,.72);
+  padding:.3em .6em;
 }
 .media-panel__frame{ position:absolute; inset:var(--space-2); border:1px solid rgba(245,245,245,.14); z-index:2; pointer-events:none; }
 .media-panel__frame::before, .media-panel__frame::after{
@@ -276,6 +282,16 @@ a.media-panel:hover .media-panel__glyph{ color:rgba(255,212,0,.16); }
    photo) but keep the fine grain, corner frame, and caption. */
 .media-panel--photo::before{ display:none; }
 .media-panel__photo-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+
+/* Product-shot variant: real equipment photos often come as isolated
+   catalog shots (plain/transparent background, dynamic diagonal pose)
+   rather than full-bleed environmental photography — cropping those with
+   object-fit:cover loses parts of the machine, so this variant shows the
+   whole unit instead, letterboxed on a neutral backdrop like a spec sheet. */
+.media-panel--contain{ background:linear-gradient(155deg, var(--eh-white) 0%, var(--eh-white-dim) 100%); }
+.media-panel--contain .media-panel__photo-img{ object-fit:contain; padding:var(--space-3); box-sizing:border-box; }
+.media-panel--contain .media-panel__index{ color:rgba(28,40,51,.75); background:rgba(245,245,245,.78); }
+.media-panel--contain .media-panel__tag{ color:var(--eh-white); }
 
 /* ---------- Hero ---------- */
 .hero{
