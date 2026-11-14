@@ -29,6 +29,15 @@ by visual inspection before filing.
 
 Every photo slot in the entire site is now filled.
 
+**Trimmed for fuller framing (Nov 2026):** `jlg-660sj.png`, `jlg-600aj.png`,
+`jlg-skytrak-10054.png`, `jlg-1055.jpg`, and `jlg-800aj.webp` had their
+excess background margin auto-cropped (ImageMagick `-trim`, whole
+machine checked intact afterward) so they fill more of each fleet tile
+instead of floating in a sea of grey. `jlg-1043.jpg` and
+`kenworth-t880.jpg` were left alone — they're full environmental
+photos (sky, jobsite), not isolated catalog shots, so there's no
+background margin to trim.
+
 **Note on `jlg-1043.jpg`:** this is a backlit/silhouette shot — no JLG
 badge or model number is legible in it. Filed as the 1043 on the
 client's direct confirmation, not from visual brand verification (the
