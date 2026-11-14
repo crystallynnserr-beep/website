@@ -54,12 +54,6 @@ $eh_cross_sell = eh_cross_sell_units( $eh_post_id );
             'index'    => $eh_category,
             'alt'      => get_the_title() . ' available for rent from Equip & Haul.',
           );
-          if ( $eh_image_id ) {
-            // Equipment photos tend to be isolated catalog shots, not
-            // full-bleed environmental photography — show the whole
-            // machine instead of cropping it.
-            $eh_panel_args['class'] = 'media-panel--contain';
-          }
           if ( ! $eh_image_id ) {
             $eh_panel_args['tag'] = eh_field( $eh_post_id, 'image_caption', get_the_title() );
           }
