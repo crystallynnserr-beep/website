@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <nav class="main-nav" aria-label="Primary">
       <ul class="main-nav__links">
         <li><a href="<?php echo esc_url( home_url( '/fleet/' ) ); ?>">Fleet &amp; Equipment</a></li>
+        <li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a></li>
       </ul>
       <div class="nav-cta">
         <a class="btn btn-primary" href="<?php echo esc_url( eh_rent_url() ); ?>" target="_blank" rel="noopener">Rent Equipment</a>
@@ -45,6 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="mobile-menu" aria-hidden="true">
   <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Home</a>
   <a href="<?php echo esc_url( home_url( '/fleet/' ) ); ?>">Fleet &amp; Equipment</a>
+  <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a>
   <a class="btn btn-primary" href="<?php echo esc_url( eh_rent_url() ); ?>" target="_blank" rel="noopener">Rent Equipment</a>
 </div>
 

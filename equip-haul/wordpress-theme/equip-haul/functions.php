@@ -67,6 +67,85 @@ function eh_year() {
 }
 
 /* =========================================================================
+   CONTACT FORM
+   Processed entirely within page-contact.php (before get_header(), so a
+   redirect can still happen) — no plugin, built on core wp_mail(). Submits
+   go to the two addresses below; change them here if they ever change.
+   ========================================================================= */
+
+function eh_contact_recipients() {
+	return array( 'donovana@loadmaxrentals.com', 'mike.reese@iwanttoretirewell.com' );
+}
+
+/**
+ * The equipment-interest dropdown: every current unit (so it stays in
+ * sync automatically as units are added/removed) plus two fixed choices.
+ */
+function eh_contact_equipment_options() {
+	$options = array();
+	foreach ( eh_get_units() as $unit ) {
+		$options[] = $unit->post_title;
+	}
+	$options[] = 'Multiple';
+	$options[] = 'Not sure yet';
+	return $options;
+}
+
+/**
+ * Validates and sends a contact form submission. Returns true on success,
+ * or a string error message on failure. A filled honeypot field is
+ * treated as spam and silently reported as "success" (so bots don't learn
+ * anything from the response) without actually sending mail.
+ */
+function eh_handle_contact_submission() {
+	if ( ! empty( $_POST['eh_contact_hp'] ) ) {
+		return true; // Honeypot tripped — pretend success, send nothing.
+	}
+	if ( ! isset( $_POST['eh_contact_nonce'] ) || ! wp_verify_nonce( $_POST['eh_contact_nonce'], 'eh_contact_submit' ) ) {
+		return 'Your session expired before this could be sent — please try again.';
+	}
+
+	$name      = isset( $_POST['eh_name'] ) ? sanitize_text_field( wp_unslash( $_POST['eh_name'] ) ) : '';
+	$email     = isset( $_POST['eh_email'] ) ? sanitize_email( wp_unslash( $_POST['eh_email'] ) ) : '';
+	$phone     = isset( $_POST['eh_phone'] ) ? sanitize_text_field( wp_unslash( $_POST['eh_phone'] ) ) : '';
+	$equipment = isset( $_POST['eh_equipment'] ) ? sanitize_text_field( wp_unslash( $_POST['eh_equipment'] ) ) : '';
+	$message   = isset( $_POST['eh_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['eh_message'] ) ) : '';
+
+	if ( '' === $name || '' === $phone ) {
+		return 'Please fill in your name and phone number.';
+	}
+	if ( '' === $email || ! is_email( $email ) ) {
+		return 'Please enter a valid email address.';
+	}
+	if ( ! in_array( $equipment, eh_contact_equipment_options(), true ) ) {
+		return 'Please choose an option from the equipment list.';
+	}
+
+	$site_name = get_bloginfo( 'name' );
+	$subject   = sprintf( '[%s] New inquiry from %s', $site_name ? $site_name : 'Equip & Haul', $name );
+
+	$body  = "New contact form submission:\n\n";
+	$body .= "Name: {$name}\n";
+	$body .= "Email: {$email}\n";
+	$body .= "Phone: {$phone}\n";
+	$body .= "Equipment interested in: {$equipment}\n";
+	if ( '' !== $message ) {
+		$body .= "\nMessage:\n{$message}\n";
+	}
+
+	$admin_email = get_bloginfo( 'admin_email' );
+	$headers   = array( 'Content-Type: text/plain; charset=UTF-8' );
+	$headers[] = 'Reply-To: ' . $name . ' <' . $email . '>';
+	if ( $admin_email ) {
+		$headers[] = 'From: ' . ( $site_name ? $site_name : 'Equip & Haul' ) . ' <' . $admin_email . '>';
+	}
+
+	$sent = wp_mail( eh_contact_recipients(), $subject, $body, $headers );
+
+	return $sent ? true : 'Something went wrong sending your message — please try again, or call us directly.';
+}
+
+/* =========================================================================
    NO-CODE FIELD SYSTEM
    One meta box per page, built from a flat field list keyed by the page's
    assigned template. This is the mechanism BUILD-PLAN.md §23 describes:
@@ -175,6 +254,16 @@ function eh_unit_fields() {
 	);
 }
 
+function eh_contact_fields() {
+	return array(
+		array( 'key' => 'contact_eyebrow', 'label' => 'Eyebrow', 'type' => 'text', 'group' => 'Page Header' ),
+		array( 'key' => 'contact_h1', 'label' => 'Headline', 'type' => 'text', 'group' => 'Page Header' ),
+		array( 'key' => 'contact_body', 'label' => 'Body', 'type' => 'textarea', 'group' => 'Page Header' ),
+		array( 'key' => 'contact_submit_label', 'label' => 'Submit Button Label', 'type' => 'text', 'group' => 'Form' ),
+		array( 'key' => 'contact_success_message', 'label' => 'Message Shown After a Successful Submission', 'type' => 'textarea', 'group' => 'Form' ),
+	);
+}
+
 /**
  * Every equipment page gets its own named template (so "JLG 660SJ" is
  * what a non-coder picks in Page Attributes → Template, not a generic
@@ -211,6 +300,8 @@ function eh_fields_for_post( $post_id ) {
 			return eh_home_fields();
 		case 'page-fleet.php':
 			return eh_fleet_fields();
+		case 'page-contact.php':
+			return eh_contact_fields();
 	}
 	if ( eh_is_unit_template( $template ) ) {
 		return eh_unit_fields();
@@ -784,6 +875,25 @@ function eh_seed_content() {
 			update_post_meta( $unit_id, '_wp_page_template', 'page-' . $u['slug'] . '.php' );
 			eh_seed_fields( $unit_id, $u['fields'] );
 		}
+	}
+
+	// ---------- Contact ----------
+	$contact_id = wp_insert_post( array(
+		'post_title'   => 'Contact',
+		'post_name'    => 'contact',
+		'post_type'    => 'page',
+		'post_status'  => 'publish',
+		'post_content' => '',
+	) );
+	if ( $contact_id && ! is_wp_error( $contact_id ) ) {
+		update_post_meta( $contact_id, '_wp_page_template', 'page-contact.php' );
+		eh_seed_fields( $contact_id, array(
+			'contact_eyebrow'          => 'Get In Touch',
+			'contact_h1'               => 'Tell Us What You Need.',
+			'contact_body'             => "Have a question, need equipment we haven't listed, or just not sure where to start? Fill out the form below and we'll get back to you.",
+			'contact_submit_label'     => 'Send Message',
+			'contact_success_message' => "Thanks — we've got your message and will be in touch shortly.",
+		) );
 	}
 
 	// ---------- Reading settings: serve Home at the site root ----------

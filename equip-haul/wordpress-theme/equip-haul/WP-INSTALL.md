@@ -28,6 +28,7 @@ Activating the theme automatically:
 - Creates all **7 equipment pages** (JLG 660SJ, JLG 1043, JLG SkyTrak
   10054, JLG 1055, JLG 600AJ, JLG 800AJ, Peterbilt 680) as children of
   Fleet & Equipment
+- Creates a **Contact** page with a built-in contact form (no plugin)
 - Fills in every headline, paragraph, spec, and "Ideal For" item with
   the real copy from the creative brief
 - Turns on clean URLs (`/fleet/jlg-660sj/` etc.)
@@ -74,7 +75,33 @@ content itself, once that file exists, is filled in the exact same
 no-code way as the other 7 — it's only the first-time setup of a brand
 new named template that isn't a plain text field.
 
-## 5. Add your real contact details
+## 5. The Contact page
+
+The **Contact** page has a form that collects Name, Email, Phone, and
+an "Equipment You're Interested In" dropdown (every unit in your fleet,
+plus "Multiple" and "Not sure yet" — this list updates itself if you add
+or remove a unit page). Submissions are emailed, with no plugin, to:
+
+```
+donovana@loadmaxrentals.com
+mike.reese@iwanttoretirewell.com
+```
+
+Both addresses get every submission. The headline, intro text, button
+label, and "thank you" message are all editable the normal no-code way
+on the Contact page's edit screen.
+
+**If emails aren't arriving:** this uses WordPress's built-in mail
+function, which on Bluehost (and most shared hosting) can be unreliable
+or land in spam, because it doesn't send through a real mail provider
+by default. If submissions don't show up in either inbox after a test
+send, check spam/junk first. If they're still missing, the fix is a
+free plugin called **WP Mail SMTP** (configured to send through a
+proper mail provider) — this is a very common, well-documented fix and
+not a sign anything is wrong with the form itself. Ask me and I can
+walk you through setting it up.
+
+## 6. Add your real contact details
 
 The footer currently shows placeholders:
 
@@ -88,7 +115,7 @@ There's no custom field for these yet — ask me to add one (same pattern
 as everything else), or edit `footer.php` directly if you're comfortable
 with that.
 
-## 6. The "Rent Equipment" link
+## 7. The "Rent Equipment" link
 
 Every button already points to the live reservation system:
 
@@ -100,7 +127,7 @@ If that URL ever changes, it's controlled from one place —
 `eh_rent_url()` near the top of `functions.php` — so updating it there
 updates every button site-wide.
 
-## 7. What's still a placeholder
+## 8. What's still a placeholder
 
 - **Imagery you haven't uploaded yet** (step 3) shows the designed
   "technical schematic" panel instead — intentional, not broken.

@@ -21,7 +21,8 @@ Most equipment rental sites read like parts catalogs: dense spec tables, stock p
 1. Home page (full cinematic scroll experience)
 2. Fleet & Equipment page (index of all 7 units)
 3. Seven individual equipment pages — JLG 660SJ, JLG 1043, JLG SkyTrak 10054, JLG 1055, JLG 600AJ, JLG 800AJ, Peterbilt 680 — each with its own named Page Template (selectable by that machine's name, not a generic label) but all sharing one render file behind the scenes (see §23), so there's no copy-pasted markup to fall out of sync
-4. Shared header / footer / CTA system
+4. Contact page with a built-in, no-plugin contact form (Name, Email, Phone, Equipment Interest) that emails submissions to two fixed addresses
+5. Shared header / footer / CTA system
 
 **Non-coder editing requirement (drives every technical decision in this plan):** the client has been explicit, twice, that they are not a coder and must be able to edit this themselves. Every page in this build is an ordinary WordPress Page with a template assigned, and every headline, paragraph, spec, bullet, and photo is a plain labeled field in the page editor — never HTML, never a file. See §23 for exactly how, including how the real copy below ships pre-loaded so there's nothing to re-type on day one.
 
@@ -124,11 +125,14 @@ A Peterbilt 680 hauling a loaded trailer down a jobsite access road at golden ho
 /fleet/jlg-600aj                 Page Template: "JLG 600AJ"
 /fleet/jlg-800aj                 Page Template: "JLG 800AJ"
 /fleet/peterbilt-680             Page Template: "Peterbilt 680"
+/contact                         Page Template: "Contact"
 ```
 
 Every one of these is an ordinary WordPress Page. Each of the 7 unit pages has **its own named template** — the Template dropdown shows that exact machine's name, not a generic label, so picking the right one is never a guess. Behind the scenes all 7 templates are thin files that share one render file, so there's a single place to fix a bug or change the layout. Each page supplies its own headline, body copy, specs, "Ideal For" list, photo, and button text through labeled fields — never by editing the template file. Adding an 8th unit means a developer duplicates one of the 7 template files and renames it (the one step that isn't pure no-code); filling in its content afterward is the same field-based process as the other 7. See §23.
 
-**Global navigation:** Logo (left) · Fleet & Equipment (link to /fleet) · Rent Equipment button (right, always `#FFD400`, always the live reservation link). Minimal by design.
+**Global navigation:** Logo (left) · Fleet & Equipment (link to /fleet) · Contact (link to /contact) · Rent Equipment button (right, always `#FFD400`, always the live reservation link). Minimal by design.
+
+**Contact page:** a single page (Template Name: "Contact") with a form collecting Name, Email, Phone, and an "Equipment You're Interested In" dropdown — the dropdown is generated from the live fleet (every unit page's title) plus "Multiple" and "Not sure yet," so it never needs manual upkeep. No form plugin: submissions are sent via core WordPress mail to `donovana@loadmaxrentals.com` and `mike.reese@iwanttoretirewell.com`, with a honeypot field against spam, nonce verification, and a post-submit redirect so refreshing the confirmation page never resends the form. The eyebrow, headline, intro copy, submit-button label, and success message are all plain labeled fields on the page, same as every other template.
 
 **Reservation system:** `https://reserve.loadmaxrentals.com/categories?intent=rent` — every `RENT EQUIPMENT` / `CHECK AVAILABILITY` button in this plan points here. This is a real, working link supplied by the client; no placeholder destination is needed anywhere in this build.
 
@@ -454,6 +458,7 @@ Headline reveals use a mask/clip-path wipe (not opacity fades) so type feels phy
     page-jlg-600aj.php                (Template Name: JLG 600AJ)
     page-jlg-800aj.php                (Template Name: JLG 800AJ)
     page-peterbilt-680.php            (Template Name: Peterbilt 680)
+    page-contact.php                  (Template Name: Contact — form processed server-side, no plugin)
     template-parts/equipment-unit-render.php  (shared render logic behind all 7 unit templates)
     index.php                       (required WordPress fallback)
     assets/css/main.css              (design system — §4, §17–19)

@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
       <div class="footer-col">
         <p class="footer-col__title">Company</p>
         <a href="<?php echo esc_url( home_url( '/fleet/' ) ); ?>">Fleet &amp; Equipment</a>
+        <a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a>
         <a href="<?php echo esc_url( eh_rent_url() ); ?>" target="_blank" rel="noopener">Rent Equipment</a>
       </div>
       <div class="footer-col">
