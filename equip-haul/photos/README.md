@@ -14,14 +14,30 @@ Image vs. Settings → Site Images).
 | `jlg-1055.jpg` | JLG 1055 page | Featured Image |
 | `jlg-800aj.webp` | JLG 800AJ page | Featured Image |
 | `kenworth-t880.jpg` | Kenworth T880 page | Featured Image |
+| `jlg-1043.jpg` | JLG 1043 page | Featured Image |
 | `scene-hero.jpg` | Settings → Site Images → "Hero — Scene 1: Staged at Sunrise" | Site Images |
 | `serve-construction.jpg` | Settings → Site Images → "Who We Serve — Commercial Construction" | Site Images |
+| `scene-mission.jpg` | Settings → Site Images → "Mission — Scene 2: The Lift" | Site Images |
+| `scene-story.jpg` | Settings → Site Images → "Story — Two Problems, One Partner" | Site Images |
+
+**Note on `jlg-1043.jpg`:** this is a backlit/silhouette shot — no JLG
+badge or model number is legible in it. Filed as the 1043 on the
+client's direct confirmation, not from visual brand verification (the
+usual bar for filing an equipment photo on this project). Worth
+swapping for a clearly-branded photo later if one becomes available.
+
+**Two photos sent (a boom lift close-up against clouds, and a
+rough-terrain forklift moving lumber) weren't filed.** The boom lift
+shot is a near-duplicate mood shot of the Story scene already filed
+above — nice photo, just not needed twice. The forklift is a different
+equipment category than anything in this fleet (straight mast, not a
+telescoping boom), so it doesn't match an existing unit or a described
+scene; let me know if there's a specific place you want it used.
 
 ## Still needed
 
 No real photo yet for:
-- JLG 1043 (unit page — Featured Image)
-- Site Images: Mission scene, Story scene, Final CTA scene, Who We Serve — Industrial & Facilities, Who We Serve — Hauling & Logistics
+- Site Images: Final CTA scene, Who We Serve — Industrial & Facilities, Who We Serve — Hauling & Logistics
 
 Each of those currently shows the designed schematic placeholder on the
 live site — nothing looks broken in the meantime, it just reads as
