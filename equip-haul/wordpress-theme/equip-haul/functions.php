@@ -281,7 +281,7 @@ function eh_unit_templates() {
 		'page-jlg-1055.php'          => 'JLG 1055',
 		'page-jlg-600aj.php'         => 'JLG 600AJ',
 		'page-jlg-800aj.php'         => 'JLG 800AJ',
-		'page-peterbilt-680.php'     => 'Peterbilt 680',
+		'page-kenworth-t880.php'     => 'Kenworth T880',
 	);
 }
 function eh_is_unit_template( $template ) {
@@ -759,113 +759,48 @@ function eh_seed_find_page( $slug ) {
 	return $existing ? (int) $existing[0]->ID : 0;
 }
 
-function eh_seed_content() {
-	// No blanket "already seeded, skip everything" guard: that would
-	// block a page added in a later theme update (like Contact) from
-	// ever being created on a site that finished seeding under an
-	// older version. Every page below is individually guarded by
-	// eh_seed_find_page() instead, so this is always safe to run on
-	// every activation — existing pages and their edits are never
-	// touched, and only a genuinely missing page gets created.
-
-	// ---------- Home ----------
-	$home_id = eh_seed_find_page( 'home' );
-	$home_is_new = ! $home_id;
-	if ( $home_is_new ) {
-		$home_id = wp_insert_post( array(
-			'post_title'   => 'Home',
-			'post_name'    => 'home',
-			'post_type'    => 'page',
-			'post_status'  => 'publish',
-			'post_content' => '',
-		) );
+/**
+ * One-time migration: an earlier version of this theme seeded the 7th
+ * unit as "Peterbilt 680". The client's actual truck turned out to be
+ * a Kenworth T880, so that unit was renamed in code. Without this, a
+ * site that already seeded the old Peterbilt page would end up with
+ * that page orphaned (its template file no longer exists) AND a brand
+ * new, separate Kenworth page created alongside it. This instead
+ * renames the existing page in place -- same page, same ID, so a
+ * featured image already set on it is untouched -- so there is exactly
+ * one truck page, not two.
+ */
+function eh_migrate_peterbilt_to_kenworth() {
+	if ( eh_seed_find_page( 'kenworth-t880' ) ) {
+		return; // already migrated (or never had the old page)
 	}
-	if ( $home_is_new && $home_id && ! is_wp_error( $home_id ) ) {
-		update_post_meta( $home_id, '_wp_page_template', 'page-home.php' );
-		eh_seed_fields( $home_id, array(
-			'hero_eyebrow'              => 'Commercial Equipment & Hauling',
-			'hero_headline'             => 'Equipment That Works as Hard as You Do',
-			'hero_subhead'              => 'Equip & Haul delivers dependable commercial equipment and hauling solutions that are ready when you are, so you can keep the job moving.',
-			'hero_button_label'         => 'Rent Equipment',
-
-			'intro_eyebrow'             => 'Ready For The Job',
-			'intro_h2'                  => 'The Right Equipment. Ready for the Job.',
-			'intro_body1'               => "Equip & Haul provides dependable, high-performance equipment for commercial construction, industrial work, and heavy hauling. From telehandlers and boom lifts to Peterbilt hauling trucks, every machine is inspected, maintained, and ready to perform.",
-			'intro_body2'               => "Whether you're lifting, loading, staging, or hauling, we make it easy to secure the equipment your operation needs. Flexible rental terms and responsive support help you stay productive and keep the job moving.",
-			'intro_micro_cta'           => 'Need Equipment on the Job?',
-			'intro_supporting'          => "Tell us what the work demands. We'll help you find the right equipment and get to work.",
-			'intro_button_label'        => 'Rent Equipment',
-
-			'stat1_value'               => '7+',
-			'stat1_label'               => 'Commercial-grade units in the Equip & Haul fleet',
-			'stat2_value'               => '100%',
-			'stat2_label'               => 'Inspected, maintained, and ready to perform before every rental',
-			'stat3_value'               => '24–48hr',
-			'stat3_label'               => 'Typical turnaround to get equipment on your site (confirm before launch)',
-			'stat4_value'               => 'Day/Wk/Mo',
-			'stat4_label'               => 'Flexible terms — stop paying when the work is finished',
-
-			'mission_eyebrow'           => 'Own Less. Do More.',
-			'mission_h2'                => 'Own Less. Do More.',
-			'mission_body1'             => 'Keep your capital focused on the people, projects, and opportunities that grow your business. Equip & Haul gives you access to commercial-grade equipment without the upfront cost, ongoing maintenance, or long-term commitment of ownership.',
-			'mission_body2'             => 'Rent the right machine for the job and keep it for as long as you need it. With flexible daily, weekly, and monthly rental options, you can keep your equipment working, your projects moving, and your capital in your business.',
-
-			'pillar1_heading'           => 'Keep Your Capital Working',
-			'pillar1_body'              => 'Avoid tying up capital in a major equipment purchase. Put those resources toward the areas of your business that generate growth.',
-			'pillar2_heading'           => 'Rent on Your Terms',
-			'pillar2_body'              => "Need equipment for a day, a week, or a month? Rent what you need, when you need it, and stop paying when the work is finished.",
-			'pillar3_heading'           => 'Always Ready to Perform',
-			'pillar3_body'              => "Every machine is inspected and maintained before it leaves the yard, so it shows up ready to perform — not something you troubleshoot on someone else's schedule.",
-
-			'story_eyebrow'             => 'Why Equip & Haul',
-			'story_h2'                  => 'Two Problems. One Partner.',
-			'story_body1'               => 'Getting a machine to a jobsite is two problems wearing one invoice: finding the right equipment, and getting it there. Most of this industry only solves the first — and leaves the second to the contractor, usually under a deadline.',
-			'story_body2'               => "We built Equip & Haul around closing that gap. Every machine is inspected, maintained, and ready to perform before it leaves the yard, and every job gets one point of contact instead of two vendors who've never talked to each other. That's not a value-add. That's the business.",
-
-			'fleet_teaser_eyebrow'      => 'The Fleet',
-			'fleet_teaser_h2'           => 'Built for Heavy Work.',
-			'fleet_teaser_body'         => 'From lifting materials at height to reaching over obstacles and hauling across long distances, our commercial-grade fleet is prepared for demanding jobsites and serious workloads.',
-			'fleet_teaser_button_label' => 'Explore Our Equipment',
-
-			'serve1_title'              => 'Commercial Construction',
-			'serve1_body'               => 'Steel erection, framing, roofing, and material placement at height.',
-			'serve2_title'              => 'Industrial & Facilities',
-			'serve2_body'               => 'Mechanical installation, structural work, and facility maintenance.',
-			'serve3_title'              => 'Hauling & Logistics',
-			'serve3_body'               => 'Equipment transportation and construction logistics, powered by our own Peterbilt fleet.',
-
-			'final_h2'                  => 'Ready to Get to Work?',
-			'final_body'                => "Tell us what the job demands. We'll help you secure the right equipment, the right rental terms, and the support you need to keep moving.",
-			'final_button_label'        => 'Rent Equipment',
-		) );
+	$old_id = eh_seed_find_page( 'peterbilt-680' );
+	if ( ! $old_id ) {
+		return; // nothing to migrate
 	}
-
-	// ---------- Fleet & Equipment ----------
-	$fleet_id = eh_seed_find_page( 'fleet' );
-	$fleet_is_new = ! $fleet_id;
-	if ( $fleet_is_new ) {
-		$fleet_id = wp_insert_post( array(
-			'post_title'   => 'Fleet & Equipment',
-			'post_name'    => 'fleet',
-			'post_type'    => 'page',
-			'post_status'  => 'publish',
-			'post_content' => '',
-		) );
+	wp_update_post( array(
+		'ID'         => $old_id,
+		'post_title' => 'Kenworth T880',
+		'post_name'  => 'kenworth-t880',
+	) );
+	update_post_meta( $old_id, '_wp_page_template', 'page-kenworth-t880.php' );
+	foreach ( eh_unit_seed_data() as $u ) {
+		if ( 'kenworth-t880' === $u['slug'] ) {
+			eh_seed_fields( $old_id, $u['fields'] );
+			break;
+		}
 	}
-	if ( $fleet_is_new && $fleet_id && ! is_wp_error( $fleet_id ) ) {
-		update_post_meta( $fleet_id, '_wp_page_template', 'page-fleet.php' );
-		eh_seed_fields( $fleet_id, array(
-			'header_h1'            => 'Equipment Built to Perform.',
-			'header_body'          => 'New, commercial-grade equipment for lifting, reaching, loading, and hauling. Explore the Equip & Haul fleet and find the machine that matches the demands of your next job.',
-			'header_button_label'  => 'Check Availability',
-			'closing_h2'           => 'Tell Us What You Need to Move.',
-			'closing_body'         => "Not sure which machine is right for the job? Tell us what you're lifting, reaching, loading, or hauling. We'll help you identify the right equipment and rental period.",
-			'closing_button_label' => 'Check Equipment Availability',
-		) );
-	}
+}
 
-	// ---------- Equipment units ----------
-	$units = array(
+/**
+ * The 7 equipment units' seed data (slug, title, menu order, and the
+ * no-code field values from BUILD-PLAN.md §13). A standalone function,
+ * not an inline array, so eh_migrate_peterbilt_to_kenworth() and
+ * eh_seed_content() both read from the exact same data -- nothing to
+ * keep in sync by hand across two copies.
+ */
+function eh_unit_seed_data() {
+	return array(
 		array(
 			'slug' => 'jlg-660sj', 'title' => 'JLG 660SJ', 'menu_order' => 1,
 			'fields' => array(
@@ -963,22 +898,133 @@ function eh_seed_content() {
 			),
 		),
 		array(
-			'slug' => 'peterbilt-680', 'title' => 'Peterbilt 680', 'menu_order' => 7,
+			'slug' => 'kenworth-t880', 'title' => 'Kenworth T880', 'menu_order' => 7,
 			'fields' => array(
 				'category_label' => 'Heavy Hauling Truck',
 				'tagline'        => 'Built for the Long Haul.',
-				'body1'          => 'The Peterbilt 680 provides the power, stability, and driver-focused performance needed for demanding hauling operations. Designed for reliable on-highway transportation, it is well suited for moving equipment, materials, and commercial loads across short or long distances.',
-				'body2'          => 'Available truck specifications may vary by configuration, engine, axle setup, and trailer requirements — confirm the exact towing capacity, transmission, cab configuration, and compatible trailers for each available unit.',
+				'body1'          => 'The Kenworth T880 provides the power, stability, and driver-focused performance needed for demanding hauling operations. Built for vocational and commercial work, it is well suited for moving equipment, materials, and commercial loads across short or long distances.',
+				'body2'          => 'Available truck specifications may vary by configuration, engine, axle setup, and trailer or body requirements — confirm the exact towing capacity, transmission, and compatible trailers for each available unit.',
 				'spec1_value' => 'Class 8', 'spec1_label' => 'Truck Class',
-				'spec2_value' => 'Confirm per unit', 'spec2_label' => 'Cab Configuration',
+				'spec2_value' => 'Day Cab', 'spec2_label' => 'Cab Configuration',
 				'spec3_value' => 'Diesel', 'spec3_label' => 'Engine',
 				'spec4_value' => 'Confirm per unit', 'spec4_label' => 'Towing Capacity',
 				'ideal_for'       => "Equipment transportation\nCommercial hauling\nConstruction logistics\nRegional transportation\nLong-distance hauling",
-				'button_label'    => 'Rent a Peterbilt 680',
-				'image_caption'   => 'Three-quarter front image of the Peterbilt connected to an equipment or flatbed trailer.',
+				'button_label'    => 'Rent a Kenworth T880',
+				'image_caption'   => 'Three-quarter front image of the Kenworth connected to an equipment or flatbed trailer.',
 			),
 		),
 	);
+}
+
+function eh_seed_content() {
+	// No blanket "already seeded, skip everything" guard: that would
+	// block a page added in a later theme update (like Contact) from
+	// ever being created on a site that finished seeding under an
+	// older version. Every page below is individually guarded by
+	// eh_seed_find_page() instead, so this is always safe to run on
+	// every activation — existing pages and their edits are never
+	// touched, and only a genuinely missing page gets created.
+
+	eh_migrate_peterbilt_to_kenworth();
+
+	// ---------- Home ----------
+	$home_id = eh_seed_find_page( 'home' );
+	$home_is_new = ! $home_id;
+	if ( $home_is_new ) {
+		$home_id = wp_insert_post( array(
+			'post_title'   => 'Home',
+			'post_name'    => 'home',
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_content' => '',
+		) );
+	}
+	if ( $home_is_new && $home_id && ! is_wp_error( $home_id ) ) {
+		update_post_meta( $home_id, '_wp_page_template', 'page-home.php' );
+		eh_seed_fields( $home_id, array(
+			'hero_eyebrow'              => 'Commercial Equipment & Hauling',
+			'hero_headline'             => 'Equipment That Works as Hard as You Do',
+			'hero_subhead'              => 'Equip & Haul delivers dependable commercial equipment and hauling solutions that are ready when you are, so you can keep the job moving.',
+			'hero_button_label'         => 'Rent Equipment',
+
+			'intro_eyebrow'             => 'Ready For The Job',
+			'intro_h2'                  => 'The Right Equipment. Ready for the Job.',
+			'intro_body1'               => "Equip & Haul provides dependable, high-performance equipment for commercial construction, industrial work, and heavy hauling. From telehandlers and boom lifts to Kenworth hauling trucks, every machine is inspected, maintained, and ready to perform.",
+			'intro_body2'               => "Whether you're lifting, loading, staging, or hauling, we make it easy to secure the equipment your operation needs. Flexible rental terms and responsive support help you stay productive and keep the job moving.",
+			'intro_micro_cta'           => 'Need Equipment on the Job?',
+			'intro_supporting'          => "Tell us what the work demands. We'll help you find the right equipment and get to work.",
+			'intro_button_label'        => 'Rent Equipment',
+
+			'stat1_value'               => '7+',
+			'stat1_label'               => 'Commercial-grade units in the Equip & Haul fleet',
+			'stat2_value'               => '100%',
+			'stat2_label'               => 'Inspected, maintained, and ready to perform before every rental',
+			'stat3_value'               => '24–48hr',
+			'stat3_label'               => 'Typical turnaround to get equipment on your site (confirm before launch)',
+			'stat4_value'               => 'Day/Wk/Mo',
+			'stat4_label'               => 'Flexible terms — stop paying when the work is finished',
+
+			'mission_eyebrow'           => 'Own Less. Do More.',
+			'mission_h2'                => 'Own Less. Do More.',
+			'mission_body1'             => 'Keep your capital focused on the people, projects, and opportunities that grow your business. Equip & Haul gives you access to commercial-grade equipment without the upfront cost, ongoing maintenance, or long-term commitment of ownership.',
+			'mission_body2'             => 'Rent the right machine for the job and keep it for as long as you need it. With flexible daily, weekly, and monthly rental options, you can keep your equipment working, your projects moving, and your capital in your business.',
+
+			'pillar1_heading'           => 'Keep Your Capital Working',
+			'pillar1_body'              => 'Avoid tying up capital in a major equipment purchase. Put those resources toward the areas of your business that generate growth.',
+			'pillar2_heading'           => 'Rent on Your Terms',
+			'pillar2_body'              => "Need equipment for a day, a week, or a month? Rent what you need, when you need it, and stop paying when the work is finished.",
+			'pillar3_heading'           => 'Always Ready to Perform',
+			'pillar3_body'              => "Every machine is inspected and maintained before it leaves the yard, so it shows up ready to perform — not something you troubleshoot on someone else's schedule.",
+
+			'story_eyebrow'             => 'Why Equip & Haul',
+			'story_h2'                  => 'Two Problems. One Partner.',
+			'story_body1'               => 'Getting a machine to a jobsite is two problems wearing one invoice: finding the right equipment, and getting it there. Most of this industry only solves the first — and leaves the second to the contractor, usually under a deadline.',
+			'story_body2'               => "We built Equip & Haul around closing that gap. Every machine is inspected, maintained, and ready to perform before it leaves the yard, and every job gets one point of contact instead of two vendors who've never talked to each other. That's not a value-add. That's the business.",
+
+			'fleet_teaser_eyebrow'      => 'The Fleet',
+			'fleet_teaser_h2'           => 'Built for Heavy Work.',
+			'fleet_teaser_body'         => 'From lifting materials at height to reaching over obstacles and hauling across long distances, our commercial-grade fleet is prepared for demanding jobsites and serious workloads.',
+			'fleet_teaser_button_label' => 'Explore Our Equipment',
+
+			'serve1_title'              => 'Commercial Construction',
+			'serve1_body'               => 'Steel erection, framing, roofing, and material placement at height.',
+			'serve2_title'              => 'Industrial & Facilities',
+			'serve2_body'               => 'Mechanical installation, structural work, and facility maintenance.',
+			'serve3_title'              => 'Hauling & Logistics',
+			'serve3_body'               => 'Equipment transportation and construction logistics, powered by our own Kenworth fleet.',
+
+			'final_h2'                  => 'Ready to Get to Work?',
+			'final_body'                => "Tell us what the job demands. We'll help you secure the right equipment, the right rental terms, and the support you need to keep moving.",
+			'final_button_label'        => 'Rent Equipment',
+		) );
+	}
+
+	// ---------- Fleet & Equipment ----------
+	$fleet_id = eh_seed_find_page( 'fleet' );
+	$fleet_is_new = ! $fleet_id;
+	if ( $fleet_is_new ) {
+		$fleet_id = wp_insert_post( array(
+			'post_title'   => 'Fleet & Equipment',
+			'post_name'    => 'fleet',
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_content' => '',
+		) );
+	}
+	if ( $fleet_is_new && $fleet_id && ! is_wp_error( $fleet_id ) ) {
+		update_post_meta( $fleet_id, '_wp_page_template', 'page-fleet.php' );
+		eh_seed_fields( $fleet_id, array(
+			'header_h1'            => 'Equipment Built to Perform.',
+			'header_body'          => 'New, commercial-grade equipment for lifting, reaching, loading, and hauling. Explore the Equip & Haul fleet and find the machine that matches the demands of your next job.',
+			'header_button_label'  => 'Check Availability',
+			'closing_h2'           => 'Tell Us What You Need to Move.',
+			'closing_body'         => "Not sure which machine is right for the job? Tell us what you're lifting, reaching, loading, or hauling. We'll help you identify the right equipment and rental period.",
+			'closing_button_label' => 'Check Equipment Availability',
+		) );
+	}
+
+	// ---------- Equipment units ----------
+	$units = eh_unit_seed_data();
 
 	foreach ( $units as $u ) {
 		$unit_id = eh_seed_find_page( $u['slug'] );

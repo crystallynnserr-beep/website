@@ -35,7 +35,7 @@ Activating the theme automatically:
 - Creates the **Home** page and sets it as your site's front page
 - Creates the **Fleet & Equipment** page
 - Creates all **7 equipment pages** (JLG 660SJ, JLG 1043, JLG SkyTrak
-  10054, JLG 1055, JLG 600AJ, JLG 800AJ, Peterbilt 680) as children of
+  10054, JLG 1055, JLG 600AJ, JLG 800AJ, Kenworth T880) as children of
   Fleet & Equipment
 - Creates a **Contact** page with a built-in contact form (no plugin)
 - Fills in every headline, paragraph, spec, and "Ideal For" item with
@@ -97,7 +97,7 @@ gathering photography.
 
 Open any equipment page's **Page Attributes** panel (right sidebar) and
 look at the **Template** dropdown — it shows that exact machine's name
-("JLG 660SJ," "Peterbilt 680," etc.), not a generic label. That's
+("JLG 660SJ," "Kenworth T880," etc.), not a generic label. That's
 deliberate: picking a template and knowing which page you're editing
 should never require guessing.
 
@@ -159,7 +159,7 @@ updates every button site-wide.
   page are accurate where they can be (7+ really is this fleet's real
   unit count) and clearly flagged where they're placeholders — edit
   them on the Home page like any other field.
-- **Peterbilt 680 specs** (cab configuration, towing capacity) are
+- **Kenworth T880 specs** (towing capacity) are
   marked "Confirm per unit" since they vary by configuration — fill in
   the real numbers for your actual truck(s) the same way as any field.
 

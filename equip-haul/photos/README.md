@@ -11,6 +11,9 @@ Image vs. Settings → Site Images).
 | `jlg-660sj.png` | JLG 660SJ page | Featured Image |
 | `jlg-600aj.png` | JLG 600AJ page | Featured Image |
 | `jlg-skytrak-10054.png` | JLG SkyTrak 10054 page | Featured Image |
+| `jlg-1055.jpg` | JLG 1055 page | Featured Image |
+| `jlg-800aj.webp` | JLG 800AJ page | Featured Image |
+| `kenworth-t880.jpg` | Kenworth T880 page | Featured Image |
 | `scene-hero.jpg` | Settings → Site Images → "Hero — Scene 1: Staged at Sunrise" | Site Images |
 | `serve-construction.jpg` | Settings → Site Images → "Who We Serve — Commercial Construction" | Site Images |
 
@@ -18,9 +21,6 @@ Image vs. Settings → Site Images).
 
 No real photo yet for:
 - JLG 1043 (unit page — Featured Image)
-- JLG 1055 (unit page — Featured Image)
-- JLG 800AJ (unit page — Featured Image)
-- Peterbilt 680 (unit page — Featured Image)
 - Site Images: Mission scene, Story scene, Final CTA scene, Who We Serve — Industrial & Facilities, Who We Serve — Hauling & Logistics
 
 Each of those currently shows the designed schematic placeholder on the

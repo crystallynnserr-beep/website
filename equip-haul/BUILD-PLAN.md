@@ -20,7 +20,7 @@ Most equipment rental sites read like parts catalogs: dense spec tables, stock p
 **Site scope for this build:**
 1. Home page (full cinematic scroll experience)
 2. Fleet & Equipment page (index of all 7 units)
-3. Seven individual equipment pages — JLG 660SJ, JLG 1043, JLG SkyTrak 10054, JLG 1055, JLG 600AJ, JLG 800AJ, Peterbilt 680 — each with its own named Page Template (selectable by that machine's name, not a generic label) but all sharing one render file behind the scenes (see §23), so there's no copy-pasted markup to fall out of sync
+3. Seven individual equipment pages — JLG 660SJ, JLG 1043, JLG SkyTrak 10054, JLG 1055, JLG 600AJ, JLG 800AJ, Kenworth T880 — each with its own named Page Template (selectable by that machine's name, not a generic label) but all sharing one render file behind the scenes (see §23), so there's no copy-pasted markup to fall out of sync
 4. Contact page with a built-in, no-plugin contact form (Name, Email, Phone, Equipment Interest) that emails submissions to two fixed addresses
 5. Shared header / footer / CTA system
 
@@ -88,7 +88,7 @@ No commissioned footage exists yet, so hero/section backdrops are planned as sho
 - Frame rate: 24fps — deliberate, unhurried motion
 - Camera: slow dolly-in, slow push, low-angle tilt only — no whip pans, no fast cuts
 - Lighting: golden-hour or overcast jobsite light, matching the iron-blue grade with warm practical highlights
-- Subject: telehandler/boom-lift-type equipment and a Peterbilt hauling a loaded trailer, in an industrial yard or active jobsite — no people in hazard positions
+- Subject: telehandler/boom-lift-type equipment and a Kenworth hauling a loaded trailer, in an industrial yard or active jobsite — no people in hazard positions
 - Post: 6–10% film grain, slight vignette, grade to brand palette
 
 **Delivery format:** MP4 (H.264), muted `autoplay loop playsinline`, with a static poster-frame JPG for the `poster` attribute and the `prefers-reduced-motion`/no-video fallback.
@@ -108,7 +108,7 @@ Mid-shot, slow push-in on a telehandler or boom lift at work on an active site �
 **Placement:** Background/side panel behind "Own Less. Do More.," duotone still on scroll-out.
 
 ### Scene 3 — "On the Move" (Final CTA)
-A Peterbilt 680 hauling a loaded trailer down a jobsite access road at golden hour, low angle, dust catching the light — the scene that makes the "& Haul" half of the brand literal. The payoff shot before the final CTA.
+A Kenworth T880 hauling a loaded trailer down a jobsite access road at golden hour, low angle, dust catching the light — the scene that makes the "& Haul" half of the brand literal. The payoff shot before the final CTA.
 **Placement:** Final CTA section, full-bleed background, reversed type over a darkened grade.
 
 ---
@@ -124,7 +124,7 @@ A Peterbilt 680 hauling a loaded trailer down a jobsite access road at golden ho
 /fleet/jlg-1055                  Page Template: "JLG 1055"
 /fleet/jlg-600aj                 Page Template: "JLG 600AJ"
 /fleet/jlg-800aj                 Page Template: "JLG 800AJ"
-/fleet/peterbilt-680             Page Template: "Peterbilt 680"
+/fleet/kenworth-t880              Page Template: "Kenworth T880"
 /contact                         Page Template: "Contact"
 ```
 
@@ -150,7 +150,7 @@ Every one of these is an ordinary WordPress Page. Each of the 7 unit pages has *
 **Section 2 — "The Right Equipment. Ready for the Job." (immediately below hero):**
 
 - **H2:** The Right Equipment. Ready for the Job.
-- **Body:** Equip & Haul provides dependable, high-performance equipment for commercial construction, industrial work, and heavy hauling. From telehandlers and boom lifts to Peterbilt hauling trucks, every machine is inspected, maintained, and ready to perform.
+- **Body:** Equip & Haul provides dependable, high-performance equipment for commercial construction, industrial work, and heavy hauling. From telehandlers and boom lifts to Kenworth hauling trucks, every machine is inspected, maintained, and ready to perform.
 
   Whether you're lifting, loading, staging, or hauling, we make it easy to secure the equipment your operation needs. Flexible rental terms and responsive support help you stay productive and keep the job moving.
 - **Micro-CTA line:** Need Equipment on the Job?
@@ -300,16 +300,16 @@ Each unit below becomes one page using that machine's own named template (§7, �
 - **Suggested image:** Full-boom profile at height with a building or industrial structure providing scale.
 - **Alt text:** JLG 800AJ articulating boom lift available for commercial rental.
 
-**7. Peterbilt 680 — Heavy Hauling Truck**
+**7. Kenworth T880 — Heavy Hauling Truck**
 - **Tagline:** Built for the Long Haul.
-- **Body:** The Peterbilt 680 provides the power, stability, and driver-focused performance needed for demanding hauling operations. Designed for reliable on-highway transportation, it is well suited for moving equipment, materials, and commercial loads across short or long distances.
+- **Body:** The Kenworth T880 provides the power, stability, and driver-focused performance needed for demanding hauling operations. Designed for reliable on-highway transportation, it is well suited for moving equipment, materials, and commercial loads across short or long distances.
 
   Available truck specifications may vary by configuration, engine, axle setup, and trailer requirements — the rental page should list the exact towing capacity, transmission, cab configuration, and compatible trailers for each available unit.
 - **Specs:** Truck Class 8 · Cab Day/Sleeper (confirm per unit) · Engine Diesel · Towing Capacity *(confirm per unit)*
 - **Ideal For:** Equipment transportation · Commercial hauling · Construction logistics · Regional transportation · Long-distance hauling
 - **Button:** `RENT A PETERBILT 680`
-- **Suggested image:** Three-quarter front image of the Peterbilt connected to an equipment or flatbed trailer.
-- **Alt text:** Peterbilt 680 commercial hauling truck available from Equip & Haul.
+- **Suggested image:** Three-quarter front image of the Kenworth connected to an equipment or flatbed trailer.
+- **Alt text:** Kenworth T880 commercial hauling truck available from Equip & Haul.
 
 ### Fleet page closing CTA
 
@@ -325,7 +325,7 @@ No client case studies, project photography, or testimonials were supplied, and 
 
 - **Commercial Construction** — Steel erection, framing, roofing, and material placement at height.
 - **Industrial & Facilities** — Mechanical installation, structural work, and facility maintenance.
-- **Hauling & Logistics** — Equipment transportation and construction logistics, powered by our own Peterbilt fleet.
+- **Hauling & Logistics** — Equipment transportation and construction logistics, powered by our own Kenworth fleet.
 
 ---
 
@@ -432,7 +432,7 @@ Headline reveals use a mask/clip-path wipe (not opacity fades) so type feels phy
 
 **This is the core engineering decision in this plan.** The client is not a coder and must be able to edit every page themselves. That rules out hardcoding copy into PHP templates (fine for a developer hand-off, not fine here) and rules out a page-builder plugin (another thing to license, update, and for a non-coder to learn). The solution used throughout this build:
 
-**Content lives in fields, not markup — and every machine gets its own named template.** The theme has 9 templates: **Home**, **Fleet & Equipment**, and one per machine (**JLG 660SJ**, **JLG 1043**, **JLG SkyTrak 10054**, **JLG 1055**, **JLG 600AJ**, **JLG 800AJ**, **Peterbilt 680**) — so the Template dropdown in Page Attributes always shows a name the client recognizes, never a generic placeholder. All 7 unit templates are thin files that `require` one shared render file (`template-parts/equipment-unit-render.php`), so the layout, markup, and field list exist in exactly one place — a bug fix or design change there applies to all 7 instantly, with zero risk of the 7 pages drifting out of sync the way 7 hand-copied files would. Each page's own headline, body paragraphs, specs, "Ideal For" list, photo, and button text live in labeled fields on that page's edit screen regardless of which of the 7 templates it uses. Adding an 8th unit means a developer duplicates one `page-*.php` file and changes its `Template Name:` comment (one small code step); every other part of populating that new page — all its content — is the same no-code field-filling process as the original 7.
+**Content lives in fields, not markup — and every machine gets its own named template.** The theme has 9 templates: **Home**, **Fleet & Equipment**, and one per machine (**JLG 660SJ**, **JLG 1043**, **JLG SkyTrak 10054**, **JLG 1055**, **JLG 600AJ**, **JLG 800AJ**, **Kenworth T880**) — so the Template dropdown in Page Attributes always shows a name the client recognizes, never a generic placeholder. All 7 unit templates are thin files that `require` one shared render file (`template-parts/equipment-unit-render.php`), so the layout, markup, and field list exist in exactly one place — a bug fix or design change there applies to all 7 instantly, with zero risk of the 7 pages drifting out of sync the way 7 hand-copied files would. Each page's own headline, body paragraphs, specs, "Ideal For" list, photo, and button text live in labeled fields on that page's edit screen regardless of which of the 7 templates it uses. Adding an 8th unit means a developer duplicates one `page-*.php` file and changes its `Template Name:` comment (one small code step); every other part of populating that new page — all its content — is the same no-code field-filling process as the original 7.
 
 **Every field is a plain input in a meta box** on the page editor screen — a text box labeled "Hero Headline," a text box labeled "Spec 1 Value," etc. — built on core WordPress (no plugin dependency). This is the same mechanism already proven for photos (a "Choose Image" button using the native WordPress media picker); here it's extended to cover every piece of text too, so *nothing* on any page requires touching a file.
 
@@ -456,7 +456,7 @@ Headline reveals use a mask/clip-path wipe (not opacity fades) so type feels phy
     page-jlg-1055.php                 (Template Name: JLG 1055)
     page-jlg-600aj.php                (Template Name: JLG 600AJ)
     page-jlg-800aj.php                (Template Name: JLG 800AJ)
-    page-peterbilt-680.php            (Template Name: Peterbilt 680)
+    page-kenworth-t880.php            (Template Name: Kenworth T880)
     page-contact.php                  (Template Name: Contact — form processed server-side, no plugin)
     template-parts/equipment-unit-render.php  (shared render logic behind all 7 unit templates)
     index.php                       (required WordPress fallback)
