@@ -27,12 +27,6 @@ if ( ! defined( 'ABSPATH' ) ) {
         <a href="<?php echo esc_url( get_permalink( $unit ) ); ?>"><?php echo esc_html( $unit->post_title ); ?></a>
         <?php endforeach; ?>
       </div>
-      <div class="footer-col">
-        <p class="footer-col__title">Contact</p>
-        <p class="footer-placeholder">[Add phone number]</p>
-        <p class="footer-placeholder">[Add email address]</p>
-        <p class="footer-placeholder">[Add service area]</p>
-      </div>
     </div>
     <div class="footer-bottom">
       <span>&copy; <?php echo eh_year(); ?> Equip &amp; Haul Equipment Leasing. All rights reserved.</span>

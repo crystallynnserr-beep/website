@@ -940,3 +940,14 @@ function eh_seed_content() {
 	flush_rewrite_rules( false );
 }
 add_action( 'after_switch_theme', 'eh_seed_content' );
+
+// after_switch_theme only fires when the active theme actually changes —
+// re-uploading a new version of a theme that's already active (the usual
+// way these updates get deployed) never triggers it. Also run the same,
+// fully idempotent check on every wp-admin page load so a page added in
+// an update (like Contact) gets created the next time anyone visits
+// wp-admin, with no reactivation dance required. Every page insert above
+// is already gated on that exact page not existing yet, so this is safe
+// to run on every request — it's a handful of lookups once everything
+// is in place, and never touches a page that already exists.
+add_action( 'admin_init', 'eh_seed_content' );

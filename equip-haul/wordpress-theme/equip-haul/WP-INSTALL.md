@@ -132,21 +132,7 @@ proper mail provider) — this is a very common, well-documented fix and
 not a sign anything is wrong with the form itself. Ask me and I can
 walk you through setting it up.
 
-## 6. Add your real contact details
-
-The footer currently shows placeholders:
-
-```
-[Add phone number]
-[Add email address]
-[Add service area]
-```
-
-There's no custom field for these yet — ask me to add one (same pattern
-as everything else), or edit `footer.php` directly if you're comfortable
-with that.
-
-## 7. The "Rent Equipment" link
+## 6. The "Rent Equipment" link
 
 Every button already points to the live reservation system:
 
@@ -158,7 +144,7 @@ If that URL ever changes, it's controlled from one place —
 `eh_rent_url()` near the top of `functions.php` — so updating it there
 updates every button site-wide.
 
-## 8. What's still a placeholder
+## 7. What's still a placeholder
 
 - **Imagery you haven't uploaded yet** (step 3) shows the designed
   "technical schematic" panel instead — intentional, not broken.

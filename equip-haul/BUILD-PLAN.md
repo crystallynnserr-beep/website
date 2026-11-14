@@ -344,9 +344,8 @@ Scene 3 ("On the Move") full-bleed background, darkened grade, reversed type.
 Iron Blue background, warm white type.
 
 - **Column 1:** Equip & Haul logo/wordmark + tagline: "Equipment That Works as Hard as You Do."
-- **Column 2 — Company:** Fleet & Equipment · Rent Equipment
+- **Column 2 — Company:** Fleet & Equipment · Contact · Rent Equipment
 - **Column 3 — Fleet:** links to all 7 unit pages
-- **Column 4 — Contact:** `[Add phone number]` · `[Add email address]` · `[Add service area]` — no contact details were supplied, so these stay clearly marked placeholders rather than fabricated; the reservation link itself is real and live everywhere else.
 - **Bottom bar:** © [Year] Equip & Haul Equipment Leasing. All rights reserved. · hairline rule in `#FFD400`.
 
 ---
