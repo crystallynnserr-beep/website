@@ -511,17 +511,11 @@ function eh_fleet_tile( $unit, $modifier = '', $unit_no = '' ) {
 		'index'    => $unit_no ? 'UNIT ' . $unit_no : '',
 		'alt'      => $unit->post_title . ' — ' . $category,
 	);
-	// Fleet tiles are now square (see .fleet-tile in main.css) to match
-	// how these catalog photos are naturally framed once trimmed, so a
-	// plain cover-crop fills the tile edge-to-edge with only minor
+	// Fleet tiles (including the hero tile) are sized to match how
+	// these catalog photos are naturally framed once trimmed, so a
+	// plain cover-crop fills every tile edge-to-edge with only minor
 	// cropping -- unlike the old landscape tile shape, where cover cut
-	// off the boom or basket. The one exception is the wide hero tile:
-	// no crop region there avoids trimming some part of a diagonal boom
-	// photo, so it keeps the contain treatment as a deliberate single
-	// showcase shot instead.
-	if ( 'hero' === $modifier && $image_id ) {
-		$panel_args['class'] = 'media-panel--contain';
-	}
+	// off the boom or basket.
 	?>
 	<a class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( get_permalink( $unit ) ); ?>">
 	  <?php echo eh_media_panel( $panel_args ); ?>

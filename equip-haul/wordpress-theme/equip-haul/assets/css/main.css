@@ -387,7 +387,7 @@ a.media-panel:hover .media-panel__glyph{ color:rgba(255,212,0,.16); }
    whole machine letterboxed on a grey backdrop. */
 .fleet-grid{ display:grid; grid-template-columns:repeat(6, 1fr); gap:var(--gutter); margin-top:var(--space-5); }
 .fleet-tile{ grid-column:span 3; aspect-ratio:1/1; display:block; position:relative; text-decoration:none; overflow:hidden; }
-.fleet-tile--hero{ grid-column:span 6; aspect-ratio:2/1; }
+.fleet-tile--hero{ grid-column:span 6; aspect-ratio:4/3; }
 .fleet-tile--plain{ grid-column:auto; grid-row:auto; aspect-ratio:1/1; }
 .fleet-tile .media-panel{ position:absolute; inset:0; aspect-ratio:auto; }
 .fleet-tile__body{
