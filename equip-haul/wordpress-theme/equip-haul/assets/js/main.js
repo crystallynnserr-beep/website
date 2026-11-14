@@ -1,32 +1,14 @@
 /* Equip & Haul — global motion & interaction layer.
-   Lenis (smooth scroll) + GSAP/ScrollTrigger (reveals, progress) with a
-   progressive-enhancement guard: nothing here is required for the page to
-   be readable, navigable, or convert. See BUILD-PLAN.md §21-23. */
+   Core page behavior (nav, scroll reveals) runs first and never depends
+   on a CDN script — a visitor can read and navigate the page even if
+   every line below the "optional polish" marker fails outright. Lenis
+   (smooth scroll) and GSAP/ScrollTrigger polish run after, wrapped so a
+   problem loading or running them can never take the rest of the page
+   down with it. See BUILD-PLAN.md §21-23. */
 (function(){
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   document.documentElement.classList.add("js-ready");
-
-  /* ---------- Smooth scroll (Lenis) ---------- */
-  var lenis = null;
-  if(window.Lenis && !reduceMotion){
-    lenis = new Lenis({
-      duration: 1.1,
-      easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-      smoothWheel: true
-    });
-    function raf(time){
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    if(window.gsap && window.ScrollTrigger){
-      lenis.on("scroll", ScrollTrigger.update);
-      gsap.ticker.add(function(time){ lenis.raf(time * 1000); });
-      gsap.ticker.lagSmoothing(0);
-    }
-  }
 
   /* ---------- Header scroll state ---------- */
   var header = document.querySelector(".site-header");
@@ -68,35 +50,80 @@
     });
   }
 
-  /* ---------- Generic scroll reveals ([data-reveal]) ---------- */
+  /* ---------- Generic scroll reveals ([data-reveal]) ----------
+     Critical, not cosmetic: main.css hides every [data-reveal] element
+     by default once .js-ready is on <html>, so this is what makes most
+     of the page's text and photos visible at all. It must never depend
+     on anything that can fail to load (GSAP, Lenis, a CDN). A hard
+     timeout backs up the IntersectionObserver so a layout edge case
+     (or anything else going wrong) can never leave whole sections stuck
+     invisible. */
   var revealEls = document.querySelectorAll("[data-reveal]");
   if(revealEls.length){
-    if("IntersectionObserver" in window){
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          if(entry.isIntersecting){
-            entry.target.classList.add("is-visible");
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
-      revealEls.forEach(function(el){ io.observe(el); });
-    } else {
+    try {
+      if("IntersectionObserver" in window){
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){
+              entry.target.classList.add("is-visible");
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });
+        revealEls.forEach(function(el){ io.observe(el); });
+      } else {
+        revealEls.forEach(function(el){ el.classList.add("is-visible"); });
+      }
+    } catch(e){
       revealEls.forEach(function(el){ el.classList.add("is-visible"); });
     }
+    window.setTimeout(function(){
+      revealEls.forEach(function(el){ el.classList.add("is-visible"); });
+    }, 2500);
   }
 
-  /* ---------- Pillar stagger via GSAP (optional polish) ---------- */
-  if(window.gsap && window.ScrollTrigger && !reduceMotion){
-    gsap.utils.toArray(".pillar").forEach(function(el, i){
-      gsap.from(el, {
-        opacity: 0,
-        y: 20,
-        duration: 0.7,
-        delay: i * 0.08,
-        ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 88%", once: true }
+  /* =========================================================
+     OPTIONAL POLISH — smooth scroll + GSAP-driven micro-motion.
+     Everything above this line already makes the page fully
+     readable and navigable; everything below is purely cosmetic
+     and is wrapped so it can never break the page if a CDN script
+     fails to load or throws for any reason.
+     ========================================================= */
+
+  /* ---------- Smooth scroll (Lenis) ---------- */
+  try {
+    if(window.Lenis && !reduceMotion){
+      var lenis = new Lenis({
+        duration: 1.1,
+        easing: function(t){ return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+        smoothWheel: true
       });
-    });
-  }
+      (function raf(time){
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      })();
+
+      if(window.gsap && window.ScrollTrigger){
+        lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.add(function(time){ lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+      }
+    }
+  } catch(e){ /* smooth scroll is cosmetic only; fail silently */ }
+
+  /* ---------- Pillar stagger via GSAP (optional polish) ---------- */
+  try {
+    if(window.gsap && window.ScrollTrigger && !reduceMotion){
+      gsap.utils.toArray(".pillar").forEach(function(el, i){
+        gsap.from(el, {
+          opacity: 0,
+          y: 20,
+          duration: 0.7,
+          delay: i * 0.08,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 88%", once: true }
+        });
+      });
+    }
+  } catch(e){ /* cosmetic only; fail silently */ }
 })();
