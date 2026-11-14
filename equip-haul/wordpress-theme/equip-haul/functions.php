@@ -652,20 +652,36 @@ function eh_seed_fields( $post_id, $data ) {
 	}
 }
 
+/**
+ * Returns the ID of an existing published page at this slug, or 0.
+ * Used so eh_seed_content() can never create a duplicate page even if
+ * it somehow runs more than once (e.g. switching themes away and back) —
+ * a page that already exists is left completely untouched, including
+ * any content the client has already edited.
+ */
+function eh_seed_find_page( $slug ) {
+	$existing = get_page_by_path( $slug, OBJECT, 'page' );
+	return $existing ? (int) $existing->ID : 0;
+}
+
 function eh_seed_content() {
 	if ( get_option( 'eh_seeded' ) ) {
 		return;
 	}
 
 	// ---------- Home ----------
-	$home_id = wp_insert_post( array(
-		'post_title'   => 'Home',
-		'post_name'    => 'home',
-		'post_type'    => 'page',
-		'post_status'  => 'publish',
-		'post_content' => '',
-	) );
-	if ( $home_id && ! is_wp_error( $home_id ) ) {
+	$home_id = eh_seed_find_page( 'home' );
+	$home_is_new = ! $home_id;
+	if ( $home_is_new ) {
+		$home_id = wp_insert_post( array(
+			'post_title'   => 'Home',
+			'post_name'    => 'home',
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_content' => '',
+		) );
+	}
+	if ( $home_is_new && $home_id && ! is_wp_error( $home_id ) ) {
 		update_post_meta( $home_id, '_wp_page_template', 'page-home.php' );
 		eh_seed_fields( $home_id, array(
 			'hero_eyebrow'              => 'Commercial Equipment & Hauling',
@@ -726,14 +742,18 @@ function eh_seed_content() {
 	}
 
 	// ---------- Fleet & Equipment ----------
-	$fleet_id = wp_insert_post( array(
-		'post_title'   => 'Fleet & Equipment',
-		'post_name'    => 'fleet',
-		'post_type'    => 'page',
-		'post_status'  => 'publish',
-		'post_content' => '',
-	) );
-	if ( $fleet_id && ! is_wp_error( $fleet_id ) ) {
+	$fleet_id = eh_seed_find_page( 'fleet' );
+	$fleet_is_new = ! $fleet_id;
+	if ( $fleet_is_new ) {
+		$fleet_id = wp_insert_post( array(
+			'post_title'   => 'Fleet & Equipment',
+			'post_name'    => 'fleet',
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_content' => '',
+		) );
+	}
+	if ( $fleet_is_new && $fleet_id && ! is_wp_error( $fleet_id ) ) {
 		update_post_meta( $fleet_id, '_wp_page_template', 'page-fleet.php' );
 		eh_seed_fields( $fleet_id, array(
 			'header_h1'            => 'Equipment Built to Perform.',
@@ -862,30 +882,38 @@ function eh_seed_content() {
 	);
 
 	foreach ( $units as $u ) {
-		$unit_id = wp_insert_post( array(
-			'post_title'   => $u['title'],
-			'post_name'    => $u['slug'],
-			'post_type'    => 'page',
-			'post_status'  => 'publish',
-			'post_parent'  => $fleet_id && ! is_wp_error( $fleet_id ) ? $fleet_id : 0,
-			'menu_order'   => $u['menu_order'],
-			'post_content' => '',
-		) );
-		if ( $unit_id && ! is_wp_error( $unit_id ) ) {
+		$unit_id = eh_seed_find_page( $u['slug'] );
+		$unit_is_new = ! $unit_id;
+		if ( $unit_is_new ) {
+			$unit_id = wp_insert_post( array(
+				'post_title'   => $u['title'],
+				'post_name'    => $u['slug'],
+				'post_type'    => 'page',
+				'post_status'  => 'publish',
+				'post_parent'  => $fleet_id && ! is_wp_error( $fleet_id ) ? $fleet_id : 0,
+				'menu_order'   => $u['menu_order'],
+				'post_content' => '',
+			) );
+		}
+		if ( $unit_is_new && $unit_id && ! is_wp_error( $unit_id ) ) {
 			update_post_meta( $unit_id, '_wp_page_template', 'page-' . $u['slug'] . '.php' );
 			eh_seed_fields( $unit_id, $u['fields'] );
 		}
 	}
 
 	// ---------- Contact ----------
-	$contact_id = wp_insert_post( array(
-		'post_title'   => 'Contact',
-		'post_name'    => 'contact',
-		'post_type'    => 'page',
-		'post_status'  => 'publish',
-		'post_content' => '',
-	) );
-	if ( $contact_id && ! is_wp_error( $contact_id ) ) {
+	$contact_id = eh_seed_find_page( 'contact' );
+	$contact_is_new = ! $contact_id;
+	if ( $contact_is_new ) {
+		$contact_id = wp_insert_post( array(
+			'post_title'   => 'Contact',
+			'post_name'    => 'contact',
+			'post_type'    => 'page',
+			'post_status'  => 'publish',
+			'post_content' => '',
+		) );
+	}
+	if ( $contact_is_new && $contact_id && ! is_wp_error( $contact_id ) ) {
 		update_post_meta( $contact_id, '_wp_page_template', 'page-contact.php' );
 		eh_seed_fields( $contact_id, array(
 			'contact_eyebrow'          => 'Get In Touch',

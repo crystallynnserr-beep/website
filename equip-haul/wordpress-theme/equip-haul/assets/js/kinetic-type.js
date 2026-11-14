@@ -43,24 +43,41 @@
     targets.forEach(el => {
       const mode = el.getAttribute("data-kinetic"); // "words" | "lines"
       const spans = mode === "lines" ? splitByLines(el) : splitByWords(el);
+      var revealed = false;
+      function reveal(){
+        if(revealed) return;
+        revealed = true;
+        spans.forEach(s => { s.style.transform = "none"; });
+      }
 
       if(!hasGSAP){
-        spans.forEach(s => { s.style.transform = "none"; });
+        reveal();
         return;
       }
 
-      gsap.set(spans, { yPercent: 110 });
-      gsap.to(spans, {
-        yPercent: 0,
-        duration: 0.9,
-        ease: "power3.out",
-        stagger: mode === "lines" ? 0.12 : 0.035,
-        scrollTrigger: {
-          trigger: el,
-          start: "top 85%",
-          once: true
-        }
-      });
+      // Safety net: if GSAP/ScrollTrigger throws, or the trigger never
+      // fires (e.g. unusual layout, a CDN version mismatch), the words
+      // must never stay hidden forever — force them visible after a
+      // short delay no matter what the animation library did.
+      window.setTimeout(reveal, 1800);
+
+      try {
+        gsap.set(spans, { yPercent: 110 });
+        gsap.to(spans, {
+          yPercent: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: mode === "lines" ? 0.12 : 0.035,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            once: true
+          },
+          onComplete: reveal
+        });
+      } catch(e){
+        reveal();
+      }
     });
   }
 

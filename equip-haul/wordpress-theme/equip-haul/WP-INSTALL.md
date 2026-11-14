@@ -36,6 +36,13 @@ Activating the theme automatically:
 Visit your homepage — the full site is there. This only happens once:
 editing content afterward never re-runs this or overwrites your changes.
 
+**If you've already been testing this theme before this update:** your
+site may have a handful of duplicate pages (e.g. two "JLG 1043" pages)
+from an earlier activation. This update makes that impossible going
+forward, but it can't undo duplicates that already exist. See the
+"Duplicate pages?" box in section 3 below to clean those up — it takes
+under a minute.
+
 ## 3. How to edit anything — no code, ever
 
 **Headlines, paragraphs, specs, button text:** open the page in
@@ -58,6 +65,16 @@ developer to touch.
 Any photo slot left empty just shows the designed placeholder panel
 instead of a broken image — nothing looks unfinished while you're still
 gathering photography.
+
+> **Duplicate pages?** If you go to **Pages** and see the same unit
+> twice (e.g. two pages both named "JLG 1043"), that happened from an
+> earlier activation before this fix — pick the one that already has
+> its Featured Image or edits on it (open both and compare), and move
+> the other, empty one to Trash. This can also show up as "ghost" tiles
+> on the Home page fleet grid or Fleet & Equipment page that look
+> identical to a real unit but have no photo — those are the duplicates.
+> This can no longer happen after this update, even if the theme gets
+> deactivated and reactivated later.
 
 ## 4. Each equipment page has its own named template
 
