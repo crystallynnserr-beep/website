@@ -504,17 +504,23 @@ function eh_fleet_tile( $unit, $modifier = '', $unit_no = '' ) {
 	}
 	$image_id = get_post_thumbnail_id( $unit->ID );
 	$category = eh_field( $unit->ID, 'category_label', 'Equipment' );
+	$panel_args = array(
+		'aspect'   => 'full',
+		'image_id' => $image_id,
+		'glyph'    => mb_substr( $unit->post_title, 0, 2 ),
+		'index'    => $unit_no ? 'UNIT ' . $unit_no : '',
+		'alt'      => $unit->post_title . ' — ' . $category,
+	);
+	if ( $image_id ) {
+		// Same reasoning as the unit-page hero panel: these are
+		// isolated catalog shots, not full-bleed environmental
+		// photography, so show the whole machine instead of a
+		// cover-crop that cuts off the boom or basket.
+		$panel_args['class'] = 'media-panel--contain';
+	}
 	?>
 	<a class="<?php echo esc_attr( $class ); ?>" href="<?php echo esc_url( get_permalink( $unit ) ); ?>">
-	  <?php
-	  echo eh_media_panel( array(
-		  'aspect'   => 'full',
-		  'image_id' => $image_id,
-		  'glyph'    => mb_substr( $unit->post_title, 0, 2 ),
-		  'index'    => $unit_no ? 'UNIT ' . $unit_no : '',
-		  'alt'      => $unit->post_title . ' — ' . $category,
-	  ) );
-	  ?>
+	  <?php echo eh_media_panel( $panel_args ); ?>
 	  <div class="fleet-tile__body">
 		<p class="fleet-tile__tag"><?php echo esc_html( $category ); ?></p>
 		<h3 class="fleet-tile__name"><?php echo esc_html( $unit->post_title ); ?></h3>
