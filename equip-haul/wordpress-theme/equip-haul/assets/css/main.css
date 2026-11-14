@@ -283,13 +283,25 @@ a.media-panel:hover .media-panel__glyph{ color:rgba(255,212,0,.16); }
 .media-panel--photo::before{ display:none; }
 .media-panel__photo-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
 
+/* Real photos on this site come from mixed sources — clean isolated
+   catalog shots for most units, a client-supplied on-location photo
+   for others — which can read as a grab-bag side by side. A light,
+   uniform color grade (BUILD-PLAN.md §4: "graded toward the #2C3E50
+   shadow tone so a mixed set of photos reads as one commissioned
+   shoot") pulls every photo toward the same tone without flattening
+   out each image's own color. */
+.media-panel--photo::after{
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:var(--eh-iron); opacity:.1; mix-blend-mode:multiply;
+}
+
 /* Product-shot variant: real equipment photos often come as isolated
    catalog shots (plain/transparent background, dynamic diagonal pose)
    rather than full-bleed environmental photography — cropping those with
    object-fit:cover loses parts of the machine, so this variant shows the
    whole unit instead, letterboxed on a neutral backdrop like a spec sheet. */
 .media-panel--contain{ background:linear-gradient(155deg, var(--eh-white) 0%, var(--eh-white-dim) 100%); }
-.media-panel--contain .media-panel__photo-img{ object-fit:contain; padding:var(--space-3); box-sizing:border-box; }
+.media-panel--contain .media-panel__photo-img{ object-fit:contain; object-position:center bottom; padding:var(--space-3); box-sizing:border-box; }
 .media-panel--contain .media-panel__index{ color:rgba(28,40,51,.75); background:rgba(245,245,245,.78); }
 .media-panel--contain .media-panel__tag{ color:var(--eh-white); }
 
