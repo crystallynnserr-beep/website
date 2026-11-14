@@ -20,6 +20,15 @@ something later if you want to change it.
 2. In WordPress: **Appearance → Themes**, find "Equip & Haul Equipment
    Leasing," and click **Activate**.
 
+**After re-uploading an update, do a hard refresh** (Ctrl+Shift+R /
+Cmd+Shift+R, or open the site in a private/incognito window) before
+deciding something didn't take effect. Every CSS and JS file's web
+address includes the theme's version number, which changes with each
+update — your browser (and your host's own caching, if it has any)
+should fetch the new file automatically, but a stale cached copy can
+occasionally stick around for a few minutes, especially right after
+reactivating.
+
 ## 2. That's it — the site is already live
 
 Activating the theme automatically:
