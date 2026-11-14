@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Peterbilt 680
+ * Template Name: Kenworth T880
  *
  * Named per-unit template so this machine is selectable by name in the
  * WordPress Page Attributes → Template dropdown. The actual rendering
