@@ -52,10 +52,11 @@ Contact) may have 404'd because your site had already finished its
 one-time setup under an older version. Re-uploading and reactivating
 this version fixes the 404 automatically — any page that's genuinely
 missing gets created, and every page you already have (plus anything
-you've edited) is left exactly as it is. See the "Duplicate pages?" box
-in section 3 below to clean up any duplicates already on the site —
-that one part needs a minute of your own clicking, since it's real data
-nothing can safely delete automatically.
+you've edited) is left exactly as it is. If an earlier version of this
+theme already created duplicate pages on your site, go to **Settings →
+Site Images** and click **Find & Trash Duplicate Pages** — one click
+cleans them all up automatically (see the box in section 3 below for
+exactly what it does).
 
 ## 3. How to edit anything — no code, ever
 
@@ -80,15 +81,17 @@ Any photo slot left empty just shows the designed placeholder panel
 instead of a broken image — nothing looks unfinished while you're still
 gathering photography.
 
-> **Duplicate pages?** If you go to **Pages** and see the same unit
-> twice (e.g. two pages both named "JLG 1043"), that happened from an
-> earlier activation before this fix — pick the one that already has
-> its Featured Image or edits on it (open both and compare), and move
-> the other, empty one to Trash. This can also show up as "ghost" tiles
-> on the Home page fleet grid or Fleet & Equipment page that look
-> identical to a real unit but have no photo — those are the duplicates.
-> This can no longer happen after this update, even if the theme gets
-> deactivated and reactivated later.
+> **Duplicate pages?** If you go to **Pages** and see the same page more
+> than once (e.g. several pages all named "JLG 660SJ"), go to
+> **Settings → Site Images** and click **Find & Trash Duplicate Pages**.
+> It automatically keeps the best copy of each page (the one with a
+> photo already set, or the oldest one) and moves every other copy to
+> Trash — nothing is permanently deleted, so you can review or restore
+> anything from **Pages → Trash** afterward if something looks wrong.
+> This can show up as repeated identical tiles on the Home page fleet
+> grid, the Fleet & Equipment page, or the footer's Fleet list — the
+> cleanup button fixes all of those at once since they all pull from
+> the same list of pages. This can no longer happen going forward.
 
 ## 4. Each equipment page has its own named template
 

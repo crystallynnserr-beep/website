@@ -587,9 +587,77 @@ add_action( 'admin_enqueue_scripts', function( $hook ) {
 	);
 } );
 
+/**
+ * One-time cleanup for a bug in an earlier update that could create
+ * duplicate Home/Fleet/unit/Contact pages. For each of those page
+ * types, if more than one page exists, keeps the best one (the one
+ * with a featured image set, if any does, otherwise the oldest) and
+ * moves every other copy to Trash -- never a permanent delete, so
+ * nothing is unrecoverable. Returns how many pages were trashed.
+ */
+function eh_dedupe_pages() {
+	$templates = array_merge(
+		array(
+			'page-home.php'    => true,
+			'page-fleet.php'   => true,
+			'page-contact.php' => true,
+		),
+		eh_unit_templates()
+	);
+
+	$pages = get_posts( array(
+		'post_type'      => 'page',
+		'post_status'    => array( 'publish', 'draft', 'pending', 'private', 'future' ),
+		'posts_per_page' => -1,
+		'no_found_rows'  => true,
+	) );
+
+	$groups = array();
+	foreach ( $pages as $p ) {
+		$tpl = get_post_meta( $p->ID, '_wp_page_template', true );
+		if ( isset( $templates[ $tpl ] ) ) {
+			$groups[ $tpl ][] = $p;
+		}
+	}
+
+	$trashed = 0;
+	foreach ( $groups as $group ) {
+		if ( count( $group ) < 2 ) {
+			continue;
+		}
+		usort( $group, function( $a, $b ) {
+			$a_has_img = get_post_thumbnail_id( $a->ID ) ? 1 : 0;
+			$b_has_img = get_post_thumbnail_id( $b->ID ) ? 1 : 0;
+			if ( $a_has_img !== $b_has_img ) {
+				return $b_has_img - $a_has_img; // keep the one with a photo first
+			}
+			return $a->ID <=> $b->ID; // otherwise keep the oldest
+		} );
+		array_shift( $group ); // the keeper
+		foreach ( $group as $dupe ) {
+			wp_trash_post( $dupe->ID );
+			$trashed++;
+		}
+	}
+	return $trashed;
+}
+
 function eh_render_images_page() {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
+	}
+
+	if ( isset( $_POST['eh_dedupe_nonce'] ) && wp_verify_nonce( $_POST['eh_dedupe_nonce'], 'eh_dedupe_pages' ) ) {
+		$trashed = eh_dedupe_pages();
+		if ( $trashed > 0 ) {
+			printf(
+				'<div class="notice notice-success is-dismissible"><p>Cleaned up %d duplicate page%s — moved to Trash, not permanently deleted, so you can review or restore any of them from <strong>Pages → Trash</strong>.</p></div>',
+				(int) $trashed,
+				1 === $trashed ? '' : 's'
+			);
+		} else {
+			echo '<div class="notice notice-success is-dismissible"><p>No duplicate pages found.</p></div>';
+		}
 	}
 
 	if ( isset( $_POST['eh_images_nonce'] ) && wp_verify_nonce( $_POST['eh_images_nonce'], 'eh_save_images' ) ) {
@@ -606,6 +674,16 @@ function eh_render_images_page() {
 	?>
 	<div class="wrap">
 	  <h1>Site Images</h1>
+
+	  <div class="card" style="max-width:720px; margin:16px 0 24px; padding:4px 20px 16px;">
+		<h2>Duplicate Page Cleanup</h2>
+		<p>If the Home, Fleet, Contact, or any equipment page ever shows up more than once, click this to clean it up automatically. It keeps the best copy of each page (the one with a photo set, or the oldest one) and moves every extra copy to Trash — nothing is permanently deleted, so anything can be restored from <strong>Pages → Trash</strong> afterward if needed.</p>
+		<form method="post">
+		  <?php wp_nonce_field( 'eh_dedupe_pages', 'eh_dedupe_nonce' ); ?>
+		  <?php submit_button( 'Find & Trash Duplicate Pages', 'secondary' ); ?>
+		</form>
+	  </div>
+
 	  <p>Upload a photo for each slot below to replace the schematic placeholder on the live site. Leave a slot empty to keep showing the placeholder there. (Each equipment unit's own photo is set separately — open that unit's page and use <strong>Set Featured Image</strong>.)</p>
 	  <form method="post">
 		<?php wp_nonce_field( 'eh_save_images', 'eh_images_nonce' ); ?>
@@ -661,8 +739,24 @@ function eh_seed_fields( $post_id, $data ) {
  * any content the client has already edited.
  */
 function eh_seed_find_page( $slug ) {
-	$existing = get_page_by_path( $slug, OBJECT, 'page' );
-	return $existing ? (int) $existing->ID : 0;
+	// Not get_page_by_path(): that function only matches a bare,
+	// non-hierarchical slug against a TOP-LEVEL page (post_parent === 0).
+	// Every equipment unit page is deliberately created as a child of
+	// Fleet & Equipment, so get_page_by_path() silently failed to find
+	// them every time, however many already existed -- a serious bug
+	// that (combined with running on admin_init) created a fresh
+	// duplicate set of all 7 units on every single wp-admin page load.
+	// get_posts() with an exact 'name' match has no such restriction.
+	$existing = get_posts( array(
+		'name'           => $slug,
+		'post_type'      => 'page',
+		'post_status'    => array( 'publish', 'draft', 'pending', 'private', 'future' ),
+		'posts_per_page' => 1,
+		'orderby'        => 'ID',
+		'order'          => 'ASC',
+		'no_found_rows'  => true,
+	) );
+	return $existing ? (int) $existing[0]->ID : 0;
 }
 
 function eh_seed_content() {
