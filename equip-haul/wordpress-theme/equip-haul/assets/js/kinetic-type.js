@@ -38,7 +38,7 @@
     const targets = document.querySelectorAll("[data-kinetic]");
     if(!targets.length) return;
 
-    const hasGSAP = window.gsap && window.ScrollTrigger;
+    const hasGSAP = !!window.gsap;
 
     targets.forEach(el => {
       const mode = el.getAttribute("data-kinetic"); // "words" | "lines"
@@ -55,29 +55,47 @@
         return;
       }
 
-      // Safety net: if GSAP/ScrollTrigger throws, or the trigger never
-      // fires (e.g. unusual layout, a CDN version mismatch), the words
-      // must never stay hidden forever — force them visible after a
-      // short delay no matter what the animation library did.
-      window.setTimeout(reveal, 1800);
-
-      try {
-        gsap.set(spans, { yPercent: 110 });
-        gsap.to(spans, {
-          yPercent: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          stagger: mode === "lines" ? 0.12 : 0.035,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-            once: true
-          },
-          onComplete: reveal
-        });
-      } catch(e){
-        reveal();
+      function animateIn(){
+        try {
+          gsap.set(spans, { yPercent: 110 });
+          gsap.to(spans, {
+            yPercent: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            stagger: mode === "lines" ? 0.12 : 0.035,
+            onComplete: reveal
+          });
+        } catch(e){
+          reveal();
+        }
       }
+
+      // Triggered by IntersectionObserver, not GSAP ScrollTrigger: a
+      // ScrollTrigger position is calculated once, early, from the
+      // page's layout at that moment — if real photos load in afterward
+      // and shift that layout (as this site's now-real equipment photos
+      // do), the cached trigger point can go stale and never fire again.
+      // IntersectionObserver re-evaluates live on every scroll, so it
+      // can't go stale the same way, and it's the same mechanism already
+      // proven reliable for this site's [data-reveal] sections.
+      if("IntersectionObserver" in window){
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){
+              animateIn();
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: "0px 0px -10% 0px" });
+        io.observe(el);
+      } else {
+        animateIn();
+      }
+
+      // Last-resort safety net well beyond any normal time-to-scroll, in
+      // case the observer itself never fires for some unforeseen reason —
+      // the words must never stay hidden forever.
+      window.setTimeout(reveal, 12000);
     });
   }
 

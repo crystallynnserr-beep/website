@@ -111,19 +111,14 @@
     }
   } catch(e){ /* smooth scroll is cosmetic only; fail silently */ }
 
-  /* ---------- Pillar stagger via GSAP (optional polish) ---------- */
-  try {
-    if(window.gsap && window.ScrollTrigger && !reduceMotion){
-      gsap.utils.toArray(".pillar").forEach(function(el, i){
-        gsap.from(el, {
-          opacity: 0,
-          y: 20,
-          duration: 0.7,
-          delay: i * 0.08,
-          ease: "power2.out",
-          scrollTrigger: { trigger: el, start: "top 88%", once: true }
-        });
-      });
-    }
-  } catch(e){ /* cosmetic only; fail silently */ }
+  // Note: there used to be a per-pillar GSAP/ScrollTrigger stagger here.
+  // Removed: ScrollTrigger calculates a trigger position once, early in
+  // page load, and gsap.from() applies opacity:0 immediately regardless —
+  // if a real photo loading in afterward shifts the page's layout (as
+  // this site's equipment photos do), that cached position can go stale
+  // and never fire, leaving the pillars permanently invisible (the same
+  // bug that hid a kinetic headline; see kinetic-type.js). The .pillars
+  // wrapper already has [data-reveal], which fades the whole group in
+  // through the IntersectionObserver-based system above — reliable, and
+  // not worth the risk for a per-item stagger.
 })();
